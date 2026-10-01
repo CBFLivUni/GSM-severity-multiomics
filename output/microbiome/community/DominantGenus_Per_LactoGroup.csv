@@ -1,0 +1,11 @@
+Group,LactoRelABin,n,DominantGenus
+Recruitment,0-19%,12,Atopobium, Prevotella, Pseudomonas, Gardnerella, Streptococcus, Bifidobacterium, No dominance, Escherichia-Shigella
+Recruitment,20-39%,1,Lactobacillus
+Recruitment,40-59%,2,Lactobacillus
+Recruitment,60-79%,1,Lactobacillus
+Recruitment,NA,18,Lactobacillus
+Follow up,0-19%,12,Atopobium, Gardnerella, Streptococcus, Bifidobacterium
+Follow up,20-39%,1,No dominance
+Follow up,40-59%,1,Lactobacillus
+Follow up,60-79%,1,Lactobacillus
+Follow up,NA,19,Lactobacillus
