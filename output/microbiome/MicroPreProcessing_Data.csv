@@ -37,12 +37,12 @@ VANB25,25,Follow up,Atrophy,78,White British,Non-smoker,Menopausal,IMVAGGIS estr
 VAN25,25,Recruitment,Atrophy,78,White British,Non-smoker,Menopausal,IMVAGGIS estriol pessaries,24.4,58,11,2,NA,4.63,NA,Yes,38978,38276,38191,38134,0.978346759710606
 VANB26,26,Follow up,Atrophy,55,White British,Non-smoker,Menopausal,Vaginal oestradiol pessaries,45.3,55,0,1.4,NA,3.5,2.4,Yes,10020,9772,9720,9720,0.970059880239521
 VAN26,26,Recruitment,Atrophy,55,White British,Non-smoker,Menopausal,Vaginal oestradiol pessaries,45.3,64,4,2.4,3,3.25,2.8,Yes,43971,43017,42815,41822,0.951126879079393
-VANB27,27,Follow up,Atrophy,51,White British,Non-smoker,Menopausal,Sandrena/Utrogestan, estriol cream,21.8,62,11,2.4,4.5,1.5,4,Yes,24261,23744,23722,23722,0.97778327356663
-VAN27,27,Recruitment,Atrophy,51,White British,Non-smoker,Menopausal,Sandrena/Utrogestan, estriol cream,21.8,59,15,3.8,4,1.63,2.2,Yes,6280,6148,6085,5719,0.910668789808917
+VANB27,27,Follow up,Atrophy,51,White British,Non-smoker,Menopausal,Sandrena/Utrogestan; estriol cream,21.8,62,11,2.4,4.5,1.5,4,Yes,24261,23744,23722,23722,0.97778327356663
+VAN27,27,Recruitment,Atrophy,51,White British,Non-smoker,Menopausal,Sandrena/Utrogestan; estriol cream,21.8,59,15,3.8,4,1.63,2.2,Yes,6280,6148,6085,5719,0.910668789808917
 VANB28,28,Follow up,Atrophy,46,White British,Non-smoker,Menopausal,4 pumps oestrogel/Mirena/IMVAGGIS,23,72,0,1.6,2.25,3.88,4.8,Yes,14714,14449,14406,14406,0.9790675547098
 VAN28,28,Recruitment,Atrophy,46,White British,Non-smoker,Menopausal,4 pumps oestrogel/Mirena/IMVAGGIS,23,77,6,2.8,3,3.5,4.6,Yes,25179,24539,24475,24475,0.972040192223678
-VANB29,29,Follow up,Atrophy,47,Other white,Non-smoker,Menopausal,Kliofem, Prasterone,27.6,23,4,1.4,1.25,NA,1.8,Yes,21606,21059,21042,21042,0.973896139961122
-VAN29,29,Recruitment,Atrophy,47,Other white,Non-smoker,Menopausal,Kliofem, Prasterone,27.6,23,3,1,1.25,NA,2.6,Yes,13944,13769,13762,13762,0.986947791164659
+VANB29,29,Follow up,Atrophy,47,Other white,Non-smoker,Menopausal,Kliofem; Prasterone,27.6,23,4,1.4,1.25,NA,1.8,Yes,21606,21059,21042,21042,0.973896139961122
+VAN29,29,Recruitment,Atrophy,47,Other white,Non-smoker,Menopausal,Kliofem; Prasterone,27.6,23,3,1,1.25,NA,2.6,Yes,13944,13769,13762,13762,0.986947791164659
 VANB30,30,Follow up,Atrophy,46,Mixed White/Hispanic,Non-smoker,Menopausal,Estriol pessaries,44.8,76,7,1.6,3,3.88,5,Yes,16008,15652,15625,15581,0.973325837081459
 VAN30,30,Recruitment,Atrophy,46,Mixed White/Hispanic,Non-smoker,Menopausal,Estriol pessaries,44.8,70,5,2,NA,4.25,NA,Yes,17468,17064,17000,16951,0.970403022670025
 VANB34,34,Follow up,Atrophy,62,White British,Non-smoker,Menopausal,Vaginal estriol pessaries (IMVAGGIS),24.7,45,9,1.2,1.25,NA,4.4,Yes,95551,93583,93395,91519,0.957802639428159
