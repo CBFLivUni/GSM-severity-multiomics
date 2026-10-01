@@ -37,19 +37,12 @@ genCnts <- genCnts %>%
   #add relative abundance per sample
   group_by(Sample) %>%
   mutate(relA = counts / sum(counts), .after = counts)
-#mirena matched patients
-patMatch <- data.frame(Mirena = c(1, 2, 15,
-                                  28, 35, 39,
-                                  56),
-                       Matched_NoMirena = c(59, 51, 16,
-                                            53, 34, 47, 
-                                            48))
+
 #output directory architecture
 dirs <- c("processed/", "processed/microbiome/",
           "output/", "output/microbiome/", "output/microbiome/community/",
           "output/microbiome/alpha/", "output/microbiome/beta/",
-          "output/microbiome/clinicalMetric/", "output/microbiome/maaslin3/",
-          recursive = T)
+          "output/microbiome/clinicalMetric/", "output/microbiome/maaslin3/")
 
 for (d in dirs) {
   if (!dir.exists(d)) {
@@ -117,13 +110,13 @@ chooseK <- function(dist,
   p1 <- c(xNorm[1], yNorm[1])
   p2 <- c(xNorm[length(xNorm)], yNorm[length(yNorm)])
   #compute how far each point sits from said line
-  distances <- map2_vec(xNorm, yNorm, function(x, y) {
+  lactorela <- map2_vec(xNorm, yNorm, function(x, y) {
     p3 <- c(x, y)
     abs((p2[2]-p1[2])*p3[1] - (p2[1]-p1[1])*p3[2] + p2[1]*p1[2] - p2[2]*p1[1]) /
       sqrt((p2[2]-p1[2])^2 + (p2[1]-p1[1])^2)
   })
   #store largest point-to-line distance as elbow point
-  kDim <- which.max(distances)
+  kDim <- which.max(lactobin)
   if (type == "k") {
     return(kDim)
   }
@@ -196,7 +189,7 @@ alpha <- data.frame(Sample  = rownames(cnts),
   #add metadata
   inner_join(., met, by = "Sample")
 
-#prepare space to store stats throughout anlaysis
+#prepare space to store stats throughout analysis
 stats <- vector(mode = "list")
 #add test statistics
 test <- wilcox.test(alpha$Shannon[alpha$Group == "Recruitment"],
@@ -371,7 +364,7 @@ kList <- map(distsBC, chooseK)
 
 #nmds
 nmdsListBC <- map2(distsBC, kList, function(d, k){
-  metaMDS(d, k = k, trymax = 100, trace = F, distances = "bray")
+  metaMDS(d, k = k, trymax = 100, trace = F, distance = "bray")
 }) 
 
 #plot stressplot
@@ -409,18 +402,11 @@ nmdsPlotListBC <- map2(nmdsBCDFs, grpz, function(n, g) {
       values <- c(values, unique(met[[vois[i]]]))
     }
   }
-  plotPal <- palFun(length(values))
   #iterate through variables and plot and save
   for (i in 1:length(vois)) {
     plotDF <- n %>%
       mutate(Group = n[[vois[i]]])
     lab <- gsub("\\.", " ", vois[[i]])
-    if ((vois[[i]] == "AgeBinned")) {
-      lab <- "Age (binned)"
-    }
-    if ((vois[[i]] == "Group")) {
-      plotDF$Group <- gsub(" ", "\n", plotDF$Group)
-    }
     #store base plot
     plots[[i]] <- plotDF %>%
       ggplot(aes(x = NMDS1.BC, y = NMDS2.BC)) +
@@ -466,7 +452,7 @@ lacto <- genCnts %>%
   filter(Genus == "Lactobacillus")
 #factorise lactobacillus level
 lacto$LactoRelABin[lacto$relA < 0.2] <- "0-19%"
-lacto$LactoRelABin[lacto$relA > 0.8] <- "> 80%"
+lacto$LactoRelABin[lacto$relA >= 0.8] <- ">= 80%"
 lacto$LactoRelABin[lacto$relA >= 0.2 &
                      lacto$relA < 0.4] <- "20-39%"
 lacto$LactoRelABin[lacto$relA >= 0.4 &
@@ -486,13 +472,12 @@ nmdsPlotList2 <- map2(nmdsBCDFs, grpz, function(n, g) {
     dplyr::select(Sample, relA) %>%
     inner_join(., n, by = "Sample") %>%
     ggplot(aes(x = NMDS1.BC, y = NMDS2.BC, colour = relA)) +
-    geom_point(size = 3, alpha = 0.5) +
+    geom_point(size = 3, alpha = 0.75) +
     labs(colour = "Relative\nabundance",
          title = g,
          subtitle = "Lactobacillus ",
          x = "NMDS1",
          y = "NMDS2") +
-    geom_point(size = 3, alpha = .75) +
     theme_bw(base_size = 13) +
     theme(legend.position = "right", 
           plot.subtitle = element_text(face = "italic")) +
@@ -571,9 +556,7 @@ nmdsPlot <- bind_rows(nmdsBCDFs) %>%
 genPal["No dominance"] <- "black"
 
 #plot
-p.beta <- ggplot(nmdsPlot, aes(x = NMDS1.BC, 
-                               y = NMDS2.BC,
-                               colour = DominantGenus)) +
+ggplot(nmdsPlot, aes(x = NMDS1.BC, y = NMDS2.BC, colour = DominantGenus)) +
   labs(col = "Dominant Genus",
        shape = "Atrophy Severity") +
   geom_point(size = 4, aes(shape = NGATBin)) +
@@ -657,11 +640,6 @@ metaCors[1,] <- c("Recruitment", "Age", "NGAT", names(test$statistic),
                   unname(test$statistic), unname(test$estimate),
                   names(test$statistic) == "T", #if exact pvalues are computed tau's test statistic is T
                   unname(test$p.value))
-corP <- round(test$p.value, 3)
-corTau <- round(test$estimate, 3)
-if (corP == 0) {
-  corP <- "< 0.001"
-}
 #Follow up
 test <- cor.test(fuDF$Age,
                  fuDF$NGAT,
@@ -680,11 +658,6 @@ metaCors[3,] <- c("Recruitment", "Age", "DIVA", names(test$statistic),
                   unname(test$statistic), unname(test$estimate),
                   names(test$statistic) == "T", #if exact pvalues are computed tau's test statistic is T
                   unname(test$p.value))
-corP <- round(test$p.value, 3)
-corTau <- round(test$estimate, 3)
-if (corP == 0) {
-  corP <- "< 0.001"
-}
 #Follow up
 test <- cor.test(fuDF$Age,
                  fuDF$DIVA,
@@ -704,11 +677,6 @@ metaCors[5,] <- c("Recruitment", "DIVA", "NGAT", names(test$statistic),
                   unname(test$statistic), unname(test$estimate),
                   names(test$statistic) == "T", #if exact pvalues are computed tau's test statistic is T
                   unname(test$p.value))
-corP <- round(test$p.value, 3)
-corTau <- round(test$estimate, 3)
-if (corP == 0) {
-  corP <- "< 0.001"
-}
 #Follow up
 test <- cor.test(fuDF$DIVA,
                  fuDF$NGAT,
@@ -772,7 +740,7 @@ labBCNGAT <- data.frame(Group = factor(c("Recruitment",
                                round(fullMod[[2]]["NGAT", c("R2")], 3)),
                         pVal = c(fullMod[[1]]["NGAT", c("Pr(>F)")],
                                  fullMod[[2]]["NGAT", c("Pr(>F)")])) %>%
-  mutate(pValLab = ifelse(pVal < 0.001, "< 0.001", round(pVal, 3)),
+  mutate(pValLab = ifelse(pVal < 0.001, "< 0.001", paste("=", round(pVal, 3))),
          label = paste0("k = ", k, 
                         "\nPERMANOVA:\nR² = ", R2, 
                         ", p = ", pValLab))
@@ -864,7 +832,7 @@ kList <- map(distsRA, chooseK, method = "robust.aitchison")
 
 #nmds
 nmdsListRA <- map2(distsRA, kList, function(d, k){
-  metaMDS(d, k = k, trymax = 100, trace = F, distances = "robust.aitchison")
+  metaMDS(d, k = k, trymax = 100, trace = F, distance = "robust.aitchison")
 }) 
 
 #plot stressplot
@@ -950,7 +918,6 @@ nmdsPlotList2 <- map2(nmdsRADFs, grpz, function(n, g) {
     dplyr::select(Sample, relA) %>%
     inner_join(., n, by = "Sample") %>%
     ggplot(aes(x = NMDS1.RA, y = NMDS2.RA, colour = relA)) +
-    geom_point(size = 3, alpha = 0.5) +
     labs(colour = "Relative\nabundance",
          title = g,
          subtitle = "Lactobacillus ",
@@ -976,9 +943,7 @@ nmdsPlot <- bind_rows(nmdsRADFs) %>%
   inner_join(., nmdsPlot)
 
 #plot
-p.beta <- ggplot(nmdsPlot, aes(x = NMDS1.RA, 
-                               y = NMDS2.RA,
-                               colour = DominantGenus)) +
+ggplot(nmdsPlot, aes(x = NMDS1.RA, y = NMDS2.RA, colour = DominantGenus)) +
   labs(col = "Dominant Genus",
        shape = "Atrophy Severity") +
   geom_point(size = 4, aes(shape = NGATBin)) +
@@ -992,9 +957,7 @@ ggsave("output/microbiome/beta/DominantGenus_RobustAitchision_AtrophySeverity_NM
 
 #permanova
 #Group dropped from all models below: beta diversity is restricted to
-#Recruitment-only samples, so Group is constant and cannot be modelled
-#HormoneDelivery2 excluded throughout - not fit for purpose, as it reflects
-#hormone delivery prior to recruitment rather than the study treatment
+#Per visit samples, so Group is constant and cannot be modelled
 fullMod <- map2(distsRA, grpz, function(d, g) {
   fm <- adonis2(d ~ NGAT + DIVA + Age + BMI,
                 data = nmdsPlot[nmdsPlot$Group == g, ], 
@@ -1160,7 +1123,6 @@ lactoSpec %>%
   theme_bw(base_size = 13) +
   geom_point(aes(colour = Group), size = 2) +
   scale_colour_manual(values = vanPal) +
-  scale_fill_manual(values = vanPal) +
   facet_wrap(.~Label,
              labeller = label_wrap_gen(width = 10)) +
   theme(legend.position = "bottom",
@@ -1322,51 +1284,6 @@ plotsLacto[[2]] <- lacto %>%
 corLacto <- ggarrange(plotlist = plotsLacto, nrow = 2, widths = 15)
 ggsave("output/microbiome/clinicalMetric/LactobacillusRelA_vs_NGATDIVA.png")
 
-##### NGAT scores ####
-#ties exist - include continuity connection with wilcox,
-#use kendall with correlation
-#difference between timepoints
-t0 <- wilcox.test(met$NGAT[met$Group == "Recruitment"],
-                  met$NGAT[met$Group == "Follow up"],
-                  exact = FALSE, continuity = TRUE, paired = TRUE)
-stats[[2]] <- data.frame(group1 = "Recruitment",
-                    group2 = "Follow up",
-                    .y. = "NGAT",
-                    V = t0$statistic,
-                    p = t0$p.value,
-                    y.position = 16) %>%
-  mutate(p.label = unlist(map(p, getSig)))
-names(stats)[2] <- "NGAT_RecruitmentVFollowUp_WilcoxonSignedRankTest_Paired_ContinuityCorrection"
-#plot
-ngatGrp <- met %>%
-  ggplot(aes(x = Group, y = NGAT)) +
-  theme_bw(base_size = 13) +
-  geom_boxplot(aes(fill = Group), alpha = 0.75) +
-  scale_colour_manual(values = vanPal) + 
-  scale_fill_manual(values = vanPal) +
-  stat_pvalue_manual(stats[[2]], label = "p.label",
-                     hide.ns = T) +
-  scale_y_continuous(expand = c(0.1, 0.1)) +
-  theme(axis.title.x = element_blank()) +
-  guides(fill = "none")
-#save
-ggsave("output/microbiome/clinicalMetric/NGAT_Scores_All.png")
-
-##### DIVA scores ####
-#ties exist
-t0 <- wilcox.test(met$DIVA[met$Group == "Recruitment"],
-                  met$DIVA[met$Group == "Follow up"],
-                  exact = FALSE, continuity = TRUE, 
-                  paired = TRUE)
-stats[[3]] <- data.frame(group1 = "Recruitment",
-                         group2 = "Follow up",
-                         .y. = "DIVA",
-                         V = t0$statistic,
-                         p = t0$p.value,
-                         y.position = 95) %>%
-  mutate(p.label = unlist(map(p, getSig)))
-names(stats)[3] <- "DIVA_RecruitmentVFollowUp_WilcoxonSignedRankTest_Paired_ContinuityCorrection"
-
 
 ##### Microbiome-Clinical Association: MaAslin3 ####
 #a separate MaAsLin3 run with identical specification will be fitted for 
@@ -1386,7 +1303,7 @@ names(stats)[3] <- "DIVA_RecruitmentVFollowUp_WilcoxonSignedRankTest_Paired_Cont
 gsm <- met$Sample[!met$Group == "Control"]
 tMCnts <- t(cnts[rownames(cnts) %in% gsm,])
 #add genus names > ASV identifiers
-genLab <- taxDF2$Genus[taxDF2$ASV %in% rownames(tMCnts)]
+genLab <- taxDF2$Genus[match(rownames(tMCnts), taxDF2$ASV)]
 rownames(tMCnts) <- genLab
 
 #add read depth from total counts per patient
@@ -1506,8 +1423,8 @@ writeLines(capture.output(print(min(rowSums(cnts)))),
            "output/microbiome/alpha/RarefactionLevel.txt")
 
 #save alpha statistics
-write.table(alpha, "output/microbiome/alpha/ShannonDiversity_Data.tsv",
-            row.names = F, col.names = T, quote = F, sep = "\t")
+write.csv(alpha, "output/microbiome/alpha/ShannonDiversity_Data.csv",
+            row.names = F, quote = F, sep = "\t")
 
 #save tests
 writeLines(capture.output(print(stats)),
