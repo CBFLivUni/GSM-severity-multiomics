@@ -1,0 +1,16 @@
+$`Covariate correlation`
+       Cohort Var1 Var2 Statistic          StatValue                 tau Exact            p        p.adj
+1 Recruitment  Age NGAT         z    4.0169835778795   0.502383542454371 FALSE 5.894783e-05 0.0003536870
+2   Follow up  Age NGAT         z   3.70126181891699   0.468847076863597 FALSE 2.145300e-04 0.0006435899
+3 Recruitment  Age DIVA         z -0.505740591624312 -0.0621025543219943 FALSE 6.130388e-01 0.7356465223
+4   Follow up  Age DIVA         z -0.535393257325637 -0.0656961652830392 FALSE 5.923780e-01 0.7356465223
+5 Recruitment DIVA NGAT         z -0.551919197578008 -0.0685354429398013 FALSE 5.810037e-01 0.7356465223
+6   Follow up DIVA NGAT         z -0.105189484490692 -0.0132200012037756 FALSE 9.162255e-01 0.9162254546
+
+$`Lactobacillus relative abundance correlations`
+       Cohort      Var1 Var2 Statistic          StatValue                 tau Exact            p        p.adj
+1 Recruitment LactoRelA NGAT         z  -3.84432871027987  -0.474046903480105 FALSE 0.0001208829 0.0004835315
+2   Follow up LactoRelA NGAT         z  -2.26706964575885  -0.283133682162043 FALSE 0.0233859715 0.0467719430
+3 Recruitment LactoRelA DIVA         z -0.593652177195525 -0.0718801577969585 FALSE 0.5527447751 0.5527447751
+4   Follow up LactoRelA DIVA         z  -1.35031087144453  -0.163379437330501 FALSE 0.1769162866 0.2358883821
+
