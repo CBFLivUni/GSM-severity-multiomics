@@ -110,13 +110,13 @@ chooseK <- function(dist,
   p1 <- c(xNorm[1], yNorm[1])
   p2 <- c(xNorm[length(xNorm)], yNorm[length(yNorm)])
   #compute how far each point sits from said line
-  lactorela <- map2_vec(xNorm, yNorm, function(x, y) {
+  distances <- map2_vec(xNorm, yNorm, function(x, y) {
     p3 <- c(x, y)
     abs((p2[2]-p1[2])*p3[1] - (p2[1]-p1[1])*p3[2] + p2[1]*p1[2] - p2[2]*p1[1]) /
       sqrt((p2[2]-p1[2])^2 + (p2[1]-p1[1])^2)
   })
   #store largest point-to-line distance as elbow point
-  kDim <- which.max(lactobin)
+  kDim <- which.max(distances)
   if (type == "k") {
     return(kDim)
   }
@@ -360,10 +360,10 @@ map2(distsBC, grpz, function(d, g) {
 })
 
 #decide on k parameter
-kList <- map(distsBC, chooseK)
+kListBC <- map(distsBC, chooseK)
 
 #nmds
-nmdsListBC <- map2(distsBC, kList, function(d, k){
+nmdsListBC <- map2(distsBC, kListBC, function(d, k){
   metaMDS(d, k = k, trymax = 100, trace = F, distance = "bray")
 }) 
 
@@ -487,7 +487,7 @@ nmdsPlotList2 <- map2(nmdsBCDFs, grpz, function(n, g) {
                            midpoint = 0.5)
   #save
   title <- gsub(" ", "-", g)
-  ggsave(paste0("output/microbiome/beta/", title, "_LactoRelA_NMDS.png"))
+  ggsave(paste0("output/microbiome/beta/Bray-Curtis_", title, "_LactoRelA_NMDS.png"))
   return(p)
 })
 
@@ -557,8 +557,11 @@ genPal["No dominance"] <- "black"
 
 #plot
 ggplot(nmdsPlot, aes(x = NMDS1.BC, y = NMDS2.BC, colour = DominantGenus)) +
-  labs(col = "Dominant Genus",
-       shape = "Atrophy Severity") +
+  labs(subtitle = "Bray-Curtis",
+       col = "Dominant Genus",
+       shape = "Atrophy Severity",
+       x = "NMDS1",
+       y = "NMDS2") +
   geom_point(size = 4, aes(shape = NGATBin)) +
   theme_bw(base_size = 13) +
   scale_colour_manual(values = genPal,
@@ -733,17 +736,21 @@ plotsBC <- vector(mode = "list")
 #prepare labels for facet plot
 labBCNGAT <- data.frame(Group = factor(c("Recruitment", 
                                   "Follow up")),
-                        k = c(kList[[1]], kList[[2]]),
                         x = c(-0.25, -0.25),
                         y = c(-0.35, -0.35),
-                        R2 = c(round(fullMod[[1]]["NGAT", c("R2")], 3), 
-                               round(fullMod[[2]]["NGAT", c("R2")], 3)),
-                        pVal = c(fullMod[[1]]["NGAT", c("Pr(>F)")],
-                                 fullMod[[2]]["NGAT", c("Pr(>F)")])) %>%
-  mutate(pValLab = ifelse(pVal < 0.001, "< 0.001", paste("=", round(pVal, 3))),
-         label = paste0("k = ", k, 
-                        "\nPERMANOVA:\nR² = ", R2, 
-                        ", p = ", pValLab))
+                        redR2 = c(round(redMod[[1]]["NGAT", c("R2")], 3), 
+                               round(redMod[[2]]["NGAT", c("R2")], 3)),
+                        redpVal = c(redMod[[1]]["NGAT", c("Pr(>F)")],
+                                    redMod[[2]]["NGAT", c("Pr(>F)")]),
+                        fullR2 = c(round(fullMod[[1]]["NGAT", c("R2")], 3), 
+                                   round(fullMod[[2]]["NGAT", c("R2")], 3)),
+                        fullpVal = c(fullMod[[1]]["NGAT", c("Pr(>F)")],
+                                     fullMod[[2]]["NGAT", c("Pr(>F)")])) %>%
+  mutate(pValLabRed = ifelse(redpVal < 0.001, "< 0.001", paste("=", round(redpVal, 3))),
+         pValLabFull = ifelse(fullpVal < 0.001, "< 0.001", paste("=", round(fullpVal, 3))),
+         label = paste0("\nPERMANOVA\nReduced: R² = ", redR2, 
+                        ", p ", pValLabRed, "\nFull: R² = ", fullR2, 
+                        ", p ", pValLabFull))
 
 
 #NGAT
@@ -768,17 +775,21 @@ plotsBC[[1]] <- ggplot(nmdsPlot, aes(x = NMDS1.BC, y = NMDS2.BC, colour = NGAT))
 #prepare labels for facet plot
 labBCDIVA <- data.frame(Group = factor(c("Recruitment", 
                                          "Follow up")),
-                        k = c(kList[[1]], kList[[2]]),
                         x = c(-0.25, -0.25),
                         y = c(-0.35, -0.35),
-                        R2 = c(round(fullMod[[1]]["DIVA", c("R2")], 3), 
-                               round(fullMod[[2]]["DIVA", c("R2")], 3)),
-                        pVal = c(fullMod[[1]]["DIVA", c("Pr(>F)")],
-                                 fullMod[[2]]["DIVA", c("Pr(>F)")])) %>%
-  mutate(pValLab = ifelse(pVal < 0.001, "< 0.001", round(pVal, 3)),
-         label = paste0("k = ", k, 
-                        "\nPERMANOVA:\nR² = ", R2, 
-                        ", p = ", pValLab)) 
+                        redR2 = c(round(redMod[[1]]["DIVA", c("R2")], 3), 
+                                  round(redMod[[2]]["DIVA", c("R2")], 3)),
+                        redpVal = c(redMod[[1]]["DIVA", c("Pr(>F)")],
+                                    redMod[[2]]["DIVA", c("Pr(>F)")]),
+                        fullR2 = c(round(fullMod[[1]]["DIVA", c("R2")], 3), 
+                                   round(fullMod[[2]]["DIVA", c("R2")], 3)),
+                        fullpVal = c(fullMod[[1]]["DIVA", c("Pr(>F)")],
+                                     fullMod[[2]]["NGAT", c("Pr(>F)")])) %>%
+  mutate(pValLabRed = ifelse(redpVal < 0.001, "< 0.001", paste("=", round(redpVal, 3))),
+         pValLabFull = ifelse(fullpVal < 0.001, "< 0.001", paste("=", round(fullpVal, 3))),
+         label = paste0("\nPERMANOVA\nReduced: R² = ", redR2, 
+                        ", p ", pValLabRed, "\nFull: R² = ", fullR2, 
+                        ", p ", pValLabFull))
 
 midP <- ((max(nmdsPlot$DIVA) - min(nmdsPlot$DIVA)) / 2) + min(nmdsPlot$DIVA)
 plotsBC[[2]] <- ggplot(nmdsPlot, aes(x = NMDS1.BC, y = NMDS2.BC, colour = DIVA)) +
@@ -822,16 +833,16 @@ map2(distsRA, grpz, function(d, g) {
     labs(title = paste0(g, ": Robust Aitchison"))
   #save
   lab <- gsub(" ", "-", g)
-  ggsave(paste0("output/microbiome/beta/robust.aichison", lab,
+  ggsave(paste0("output/microbiome/beta/RobustAichison", lab,
                 "_StressVsDimensions.png"))
   return(out)
 })
 
 #decide on k parameter
-kList <- map(distsRA, chooseK, method = "robust.aitchison")
+kListRA <- map(distsRA, chooseK, method = "robust.aitchison")
 
 #nmds
-nmdsListRA <- map2(distsRA, kList, function(d, k){
+nmdsListRA <- map2(distsRA, kListRA, function(d, k){
   metaMDS(d, k = k, trymax = 100, trace = F, distance = "robust.aitchison")
 }) 
 
@@ -871,12 +882,6 @@ nmdsPlotListRA <- map2(nmdsRADFs, grpz, function(n, g) {
     plotDF <- n %>%
       mutate(Group = n[[vois[i]]])
     lab <- gsub("\\.", " ", vois[[i]])
-    if ((vois[[i]] == "AgeBinned")) {
-      lab <- "Age (binned)"
-    }
-    if ((vois[[i]] == "Group")) {
-      plotDF$Group <- gsub(" ", "\n", plotDF$Group)
-    }
     #store base plot
     plots[[i]] <- plotDF %>%
       ggplot(aes(x = NMDS1.RA, y = NMDS2.RA)) +
@@ -1016,7 +1021,6 @@ plots <- vector(mode = "list")
 #prepare labels for facet plot
 labRANGAT <- data.frame(Group = factor(c("Recruitment", 
                                          "Follow up")),
-                        k = c(kList[[1]], kList[[2]]),
                         x = c(-16.5, -16.5),
                         y = c(3, 3),
                         R2 = c(round(fullMod[[1]]["NGAT", c("R2")], 3), 
@@ -1051,7 +1055,6 @@ plots[[1]] <- ggplot(nmdsPlot, aes(x = NMDS1.RA, y = NMDS2.RA, colour = NGAT)) +
 #prepare labels for facet plot
 labRADIVA <- data.frame(Group = factor(c("Recruitment", 
                                          "Follow up")),
-                        k = c(kList[[1]], kList[[2]]),
                         x = c(-16.5, -16.5),
                         y = c(3, 3),
                         R2 = c(round(fullMod[[1]]["DIVA", c("R2")], 3), 
