@@ -1,0 +1,8 @@
+$Alpha_BeforeVAfter_WilcoxonSignedRankSum_Paired
+       group1    group2     .y. y.position     p   V p.label
+V Recruitment Follow up Shannon          3 0.012 442       *
+
+$Richness_BeforeVAfter_WilcoxonSignedRankSum_Paired
+       group1    group2      .y. y.position     p   V p.label
+V Recruitment Follow up Richness         57 0.191 375      NS
+
