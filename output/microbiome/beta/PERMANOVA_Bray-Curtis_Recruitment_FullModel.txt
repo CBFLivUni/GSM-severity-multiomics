@@ -1,0 +1,15 @@
+Permutation test for adonis under reduced model
+Marginal effects of terms
+Permutation: free
+Number of permutations: 10000
+
+adonis2(formula = d ~ NGAT + DIVA + Age + BMI, data = nmdsPlot[nmdsPlot$Group == g, ], permutations = 10000, method = "bray", by = "margin")
+         Df SumOfSqs      R2      F Pr(>F)    
+NGAT      1   1.6026 0.17770 7.8776 0.0002 ***
+DIVA      1   0.2841 0.03150 1.3966 0.2095    
+Age       1   0.2928 0.03247 1.4393 0.2028    
+BMI       1   0.0651 0.00721 0.3198 0.9254    
+Residual 29   5.8998 0.65416                  
+Total    33   9.0188 1.00000                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1

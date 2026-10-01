@@ -1,0 +1,9 @@
+Permutation test for adonis under reduced model
+Permutation: free
+Number of permutations: 10000
+
+adonis2(formula = d ~ NGAT + DIVA, data = nmdsPlot[nmdsPlot$Group == g, ], permutations = 10000, method = "robust.aitchison")
+         Df SumOfSqs      R2      F Pr(>F)
+Model     2    90.37 0.06338 1.0488 0.3906
+Residual 31  1335.44 0.93662              
+Total    33  1425.81 1.00000              

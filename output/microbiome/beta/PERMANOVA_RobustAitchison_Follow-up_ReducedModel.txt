@@ -1,0 +1,11 @@
+Permutation test for adonis under reduced model
+Marginal effects of terms
+Permutation: free
+Number of permutations: 10000
+
+adonis2(formula = d ~ NGAT + DIVA, data = nmdsPlot[nmdsPlot$Group == g, ], permutations = 10000, method = "robust.aitchison", by = "margin")
+         Df SumOfSqs      R2      F Pr(>F)
+NGAT      1    66.84 0.04688 1.5516 0.2041
+DIVA      1    28.08 0.01969 0.6518 0.5999
+Residual 31  1335.44 0.93662              
+Total    33  1425.81 1.00000              
