@@ -108,19 +108,11 @@ rownames(seqtab.nochim) <- microS
 print(paste0(round(sum(seqtab.nochim)/sum(seqtab)*100, 2), "% reads remain"))
 
 #read in metadata
-met <- read.csv("input/SampleMeta_Jul26_Complete.csv")
-
-#combine with dada1 stats
-met2 <- trackDF %>%
-  rownames_to_column(var = "Sample") %>%
-  mutate(Patient.ID = gsub("\\D", "", Sample),
-         Patient.ID = as.integer(Patient.ID)) %>%
-  inner_join(., met, by = c("Sample")) 
-
-#factorise visit (group)
-met2$Group <- factor(met2$Group, levels = c("Control",
-                                                    "Recruitment",
-                                                    "Follow up"))
+met <- read.csv("input/SampleMetadata.csv") %>%
+  # factorise group
+  mutate(Group = factor(Group, levels = c("Control",
+                                          "Recruitment",
+                                          "Follow up")))
 
 ##### Assign taxonomy #####
 #bayesian approach employed by dada2
@@ -343,20 +335,13 @@ mostCon <- (rowSums(seqtab.nocont) / rowSums(seqtab.nochim)) %>%
 seqtab.nocont <- seqtab.nocont[! rownames(seqtab.nocont) %in% mostCon, ]
 
 ##### PhyloSeq: Final Processing ####
-#prepare metadata
-#factorise the group variable for later plots
-met <- met %>%
-  mutate(Group = factor(Group, levels = c("Control",
-                                                  "Recruitment",
-                                                  "Follow up")))
-
 #Remove samples that 1) were removed from this analysis due to 
 #sequencing QC and 2) do not have the second time point 
 met <- met %>%
   filter(Sample %in% rownames(seqtab.nocont))
 
-#now determine which atrophy patients have
-#<2 timepoints
+#now determine which atrophy patients do not have
+#both visits
 oneTime <- met %>%
   filter(Status == "Atrophy") %>%
   group_by(Patient.ID) %>%
@@ -364,6 +349,7 @@ oneTime <- met %>%
   filter(n == 1) %>%
   select(Patient.ID) %>%
   pull()
+#remove
 met <- met %>%
   filter(!Patient.ID %in% oneTime)
 
@@ -372,7 +358,7 @@ cnts <- data.frame(seqtab.nocont)
 #remove samples without > 1 timepoint
 cnts <- cnts[rownames(cnts) %in% met$Sample, ]
 
-#make new Group#make new phyloseq object with the removed samples (necessary for contamination
+#make new phyloseq object with the removed samples (necessary for contamination
 #exploration, but cannot be used in downstream analyses)
 samdf <- met %>%
   column_to_rownames(var = "Sample") 
@@ -411,6 +397,9 @@ toKeep <- met$Sample[!met$Patient.ID %in% lowPat]
 
 #remove samples with low biological signal
 phylo <- prune_samples(toKeep, phylo)
+#remove from metadata
+met <- met %>%
+  filter(Sample %in% toKeep)
 
 #collapsing to other levels
 #collapse counts to genus level; summing species within
@@ -628,11 +617,11 @@ prevDF <- genCnts %>%
 #manuscript figure
 ggarrange(plotlist = list(phyCom, genCom),
           ncol = 1, labels = "AUTO")
-ggsave("output/figures/Figure1.png",
+ggsave("output/figures/Fig-community.png",
        height = 15, width = 10, units = "in")
-ggsave("output/figures/Figure1.pdf",
+ggsave("output/figures/Fig-community.pdf",
        height = 15, width = 10, units = "in")
-ggsave("output/figures/Figure1.jpg",
+ggsave("output/figures/Fig-community.jpg",
        height = 15, width = 10, units = "in")
 
 #contamination investigations
@@ -649,8 +638,11 @@ write.csv(posContamDF, "output/microbiome/PotentialContam.csv",
 genPal <- plotPal
 save(genPal, file = "processed/microbiome/AbundantGeneraPalette.rds")
 
-#updated metadata
-write.csv(met, "output/microbiome/MicroPreProcessing_Data.csv",
+#output of preprocessing - metadata + dada2 stats
+trackDF %>%
+  rownames_to_column(var = "Sample") %>%
+  inner_join(met, .) %>% 
+  write.csv(., "output/microbiome/MicroPreProcessing_Data.csv",
           quote = F, row.names = F)
 
 #dada2 error rates
@@ -659,15 +651,23 @@ plotErrors(errF, nominalQ = T)
 dev.off()
 
 #dada2 descriptive statistics
-write.table(trackDF, "processed/microbiome/ReadDada2_tracked.tsv",
-            sep = "\t", col.names = T, row.names = T, quote = F)
+write.csv(trackDF, "processed/microbiome/ReadDada2_tracked.csv",
+          row.names = T, quote = F)
 
 #phyloseq objects
 save(phylo, phyGen, phyPhy, file = "processed/microbiome/PhyloSeqObjs.rds")
 
 #prevalence
-write.table(prevDF, "output/microbiome/community/Prevalence.tsv",
-            sep = "\t", quote = F, row.names = F)
+write.csv(prevDF, "output/microbiome/community/Prevalence.csv",
+          quote = F, row.names = F)
+
+#record samples used in analysis
+met %>%
+  filter(Sample %in% rownames(cnts)) %>%
+  mutate(Microbiome = "Present") %>%
+  select(Sample, Patient.ID, Microbiome) %>%
+  write.csv(., "processed/Sample_AnalysisRegister.csv",
+            quote = F, row.names = F)
 
 #session information
 writeLines(capture.output(sessionInfo()), "output/microbiome/PreProcessing_sessionInfo.txt")
