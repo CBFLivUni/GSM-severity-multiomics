@@ -59,8 +59,6 @@ VANB40,40,Follow up,Atrophy,45,Mixed White/Black,Non-smoker,Menopausal,Vaginal o
 VAN40,40,Recruitment,Atrophy,45,Mixed White/Black,Non-smoker,Menopausal,Vaginal oestradiol as per licence ,23.3,59,2,1.8,NA,3.88,2,Yes,21385,21231,21203,21203,0.991489361702128
 VAN41,41,Control,Non-Atrophy,28,White British,Non-smoker,Pre-menopausal,NA,34.3,22,1,1,1,1,1,Not applicable,18510,13771,13713,13147,0.710264721772015
 VAN43,43,Control,Non-Atrophy,40,White British,Non-smoker,Pre-menopausal,NA,21,65,1,2.8,3.75,NA,5,Not applicable,16793,12650,12608,11960,0.712201512534985
-VANB45,45,Follow up,Atrophy,41,White British,Smoker,Pre-menopausal,Estriol 0.1% cream twice weekly,21.8,43,8,1.2,2.75,NA,3,Yes,29399,28229,28201,28201,0.959250314636552
-VAN45,45,Recruitment,Atrophy,41,White British,Smoker,Pre-menopausal,Estriol 0.1% cream twice weekly,21.8,85,6,2.6,4.25,4.38,4,Yes,5597,5487,5473,5075,0.906735751295337
 VANB47,47,Follow up,Atrophy,47,White British,Non-smoker,Menopausal,Oestrogel 3 pumps daily/Tostran 2%/Prasterone 6.5 mg daily (Hysterectomy),29.4,38,2,1,1,NA,4.4,Yes,13049,12627,12600,12600,0.965591233044678
 VAN47,47,Recruitment,Atrophy,47,White British,Non-smoker,Menopausal,Oestrogel 3 pumps daily/Tostran 2%/Prasterone 6.5 mg daily (Hysterectomy),29.4,70,3,1.4,2.25,NA,4.8,Yes,14306,14142,14126,14126,0.987417866629386
 VANB48,48,Follow up,Atrophy,49,White British,Non-smoker,Menopausal,Oestrogel/Micronised progesterone (Rx for PMDD)/Prasterone,24,52,0,1.2,2.5,NA,3.8,Yes,11426,11047,11025,10995,0.962279012777875
