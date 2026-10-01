@@ -38,13 +38,15 @@ previous ones. All scripts assume the **project root** as the working directory.
 
 ```r
 # from the project root, in this order
-source("scripts/00_Install.R")           # installs all dependencies
-source("scripts/01_Micro_Processing.R")  # microbiome: DADA2 + taxonomy assignment
+source("scripts/00_Install.R")           # installs all dependencies. Required for all downstream
+source("scripts/01_Micro_Processing.R")  # microbiome: DADA2 + taxonomy assignment. Required to run 02, 04
 source("scripts/02_Micro_Analysis.R")    # microbiome: analysis
-source("scripts/03_NMR_Analysis.R")      # metabolomic: analysis
-source("scripts/04_NetworkBuild.R")      # integration: building networks
+source("scripts/03_NMR_Analysis.R")      # metabolomic: analysis. Required to run 04
+source("scripts/04_NetworkBuild.R")      # integration: building networks. Required to run 05.
 source("scripts/05_NetworkComparison.R") # integration: assessing networks
 ```
+
+Note: Scripts 03 does not depend directly on script 02 and can be run in parallel with it if desired.
 
 #### Breakdown
 
@@ -52,10 +54,11 @@ source("scripts/05_NetworkComparison.R") # integration: assessing networks
 
 - `01_Micro_Processing.R`: Turns trimmed 16S reads into ASVs with DADA2 and assigns SILVA taxonomy. Removes likely reagent contaminants, low-read samples and patients without both visits. Main outputs: `phyloseq` objects at ASV, genus and phylum level for further analysis (script 02) and draws a community-composition plot (manuscript figure).
 
-- 
+- `02_Micro_Analysis.R`: Computes alpha diversity (Shannon, richness) by rarefaction and models it against NGAT/DIVA with mixed models. Runs beta diversity (Bray-Curtis and robust Aitchison NMDS plus PERMANOVA) separately at each visit. Finally tests _Lactobacillus_ abundance and per-genus associations (MaAsLin3) against severity scores. Main outputs: LMM/`MaAsLin3` results, plots alpha/beta and _Lactobacillus_ outputs (manuscript figures).
 
+- `03_NMR_Analysis.R`: Normalises the NMR spectra and fits a mixed model per metabolite bin against NGAT, DIVA, visit and covariates. Checks NGAT hits with per-visit Kendall correlations. Main outputs: model results and metabolite bins of interest across groups (manuscript figure).
 
+- `04_NetworkBuild.R`: Transforms and filters microbiome counts data. Builds microbe–metabolite Spearman correlation networks for each visit, with permutation p-values and BH correction. Main outputs: network build models ready for assessment / visualisation (script 05).
 
-
-Note: Scripts 03 and 04 do not depend directly on script 02 and can be run in parallel with it if desired.
+- `05_NetworkComparison.R`: Compares the recruitment and follow up networks (hubs, degree, betweenness, shared nodes and edges) and labels the NGAT-associated metabolites. Runs Mantel tests of overall microbiome–metabolome agreement. Main outputs: visualisations of each visits integrated microbiome-metabolome interactions (manuscript figure).
 
