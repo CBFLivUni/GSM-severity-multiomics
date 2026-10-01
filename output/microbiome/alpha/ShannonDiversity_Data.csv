@@ -1,0 +1,81 @@
+Sample,Shannon,Richness,Patient.ID,Group,Status,Age,Ethnicity,Smoking.status,Menopausal.status,Atrophy_Rx,BMI,DIVA,NGAT,Daily.Living.Mean,Impact,Sexual.Impact,Self.Esteem,Follow.Up,input,filtered,denoisedF,nonchim,PropPassed
+VAN1,0.19580666086509,21.0873,1,Recruitment,Atrophy,54,White British,Non-smoker,Menopausal,E2 gel & Mirena with vaginal estrogen (cont.),28.7,47,6,1.2,1.75,2.5,2.8,Yes,20357,19764,19708,19666,0.966055902146682
+VAN10,0.669951441169852,21.085,10,Recruitment,Atrophy,56,White British,Non-smoker,Menopausal,Prasterone (DHEA),24.2,65,5,2.6,4.25,NA,4,Yes,53059,52337,52265,52069,0.981341525471645
+VAN11,0.977992900485436,14.8478,11,Recruitment,Atrophy,49,White British,Non-smoker,Menopausal,Lezetto (seystemic estrogen spray and vaginal DHEA) - (cont.),20.3,82,12,1.2,3,5,4.8,Yes,28924,28680,28653,28369,0.980811782602683
+VAN12,1.65127718380524,15.1726,12,Recruitment,Atrophy,54,White British,Non-smoker,Menopausal,Systemic HRT; vaginal estrogen,20,80,6,1.2,3.75,4.25,5,Yes,28782,28491,28467,28446,0.988326037106525
+VAN13,0.965658979159452,12.6933,13,Recruitment,Atrophy,67,White British,Non-smoker,Menopausal,Estriol 0.01% cream (cont.),29.7,52,9,3.8,3.75,NA,NA,Yes,32662,32191,32138,31773,0.972781825975139
+VAN15,0.371780294375279,24.5609,15,Recruitment,Atrophy,45,White British,Non-smoker,Menopausal,0.1% cream (Mirena),41.9,55,3,2.2,3.75,2,2.6,Yes,88427,86494,86243,85057,0.961889468148869
+VAN17,0.490587933087179,3.6792,17,Recruitment,Atrophy,63,White British,Non-smoker,Menopausal,4 pumps oestogel/micronised progesterone/prasterone - cont,23.5,65,7,1,NA,3.63,4.4,Yes,48963,48558,48544,48487,0.990278373465678
+VAN2,0.3013442434802,23.8163,2,Recruitment,Atrophy,50,White British,Non-smoker,Menopausal,HRT implants E2/T with Mirena (cont.); Vaginal DHEA,31,76,5,3.4,4.5,2,5,Yes,18751,18262,18200,18200,0.970614900538638
+VAN20,0.155557969545149,2.8636,20,Recruitment,Atrophy,50,White British,Non-smoker,Menopausal,Tibolone (CO2 laser received prior to recruitment),22.5,64,0,1.8,2.25,3,4.4,Yes,12975,12877,12865,12865,0.991522157996146
+VAN21,0.326188292178383,11.7286,21,Recruitment,Atrophy,57,White British,Non-smoker,Menopausal,Oestrogel 2 pumps with micronised progesterone. Eestriol cream delivery vaginally (cont.) and to vulva introduced.,20.6,88,7,3.4,3.75,4,4.8,Yes,47531,46665,46583,46342,0.974984746796827
+VAN22,1.9071883443902,32.2229,22,Recruitment,Atrophy,74,White British,Non-smoker,Menopausal,Ospemifene. Estriol 0.1% cream (cont.),24.5,25,13,2.8,NA,NA,1,Yes,60257,58323,58000,56981,0.945632872529333
+VAN23,0.66844095838375,18.9761,23,Control,Non-Atrophy,33,Asian Pakistani,Non-smoker,Pre-menopausal,NA,34.6,28,3,1,NA,1.88,NA,Not applicable,19722,15913,15677,15557,0.788814521853767
+VAN24,0.990238672757172,21.3764,24,Control,Non-Atrophy,22,White British,Non-smoker,Pre-menopausal,NA,21,61,0,2.6,3.25,3.5,1.4,Not applicable,16524,13279,13112,13065,0.790668119099492
+VAN25,0.543463086034966,26.1445,25,Recruitment,Atrophy,78,White British,Non-smoker,Menopausal,IMVAGGIS estriol pessaries,24.4,58,11,2,NA,4.63,NA,Yes,38978,38276,38191,38134,0.978346759710606
+VAN26,0.30791405775365,13.6269,26,Recruitment,Atrophy,55,White British,Non-smoker,Menopausal,Vaginal oestradiol pessaries,45.3,64,4,2.4,3,3.25,2.8,Yes,43971,43017,42815,41822,0.951126879079393
+VAN27,2.0837396867282,39,27,Recruitment,Atrophy,51,White British,Non-smoker,Menopausal,Sandrena/Utrogestan; estriol cream,21.8,59,15,3.8,4,1.63,2.2,Yes,6280,6148,6085,5719,0.910668789808917
+VAN28,0.19813672546052,14.5502,28,Recruitment,Atrophy,46,White British,Non-smoker,Menopausal,4 pumps oestrogel/Mirena/IMVAGGIS,23,77,6,2.8,3,3.5,4.6,Yes,25179,24539,24475,24475,0.972040192223678
+VAN29,0.00130215197194558,1.4061,29,Recruitment,Atrophy,47,Other white,Non-smoker,Menopausal,Kliofem; Prasterone,27.6,23,3,1,1.25,NA,2.6,Yes,13944,13769,13762,13762,0.986947791164659
+VAN3,0.109422549816449,15.8457,3,Recruitment,Atrophy,67,White British,Non-smoker,Menopausal,Ospemifene (by mouth),35.5,72,9,5,NA,NA,5,Yes,55105,53658,53608,53458,0.970111605117503
+VAN30,0.864272170342225,37.8382,30,Recruitment,Atrophy,46,Mixed White/Hispanic,Non-smoker,Menopausal,Estriol pessaries,44.8,70,5,2,NA,4.25,NA,Yes,17468,17064,17000,16951,0.970403022670025
+VAN34,2.43502149530371,29.4224,34,Recruitment,Atrophy,62,White British,Non-smoker,Menopausal,Vaginal estriol pessaries,24.7,43,13,1.4,1,NA,2.4,Yes,21966,21375,21305,21301,0.969725940089229
+VAN35,0.0229341515654249,6.6003,35,Recruitment,Atrophy,61,White British,Non-smoker,Menopausal,1 pump oestogel/Mirena (systemic) daily vaginal estradiol 10mcg,24.9,62,8,1.4,4.25,NA,4.4,Yes,37545,36433,36359,34683,0.923771474230923
+VAN36,1.35183680537562,36.1215,36,Recruitment,Atrophy,65,White British,Non-smoker,Menopausal,Estriol 0.1% cream,29.2,37,14,3.6,2,NA,1.4,Yes,32787,31880,31766,30618,0.93384573153994
+VAN37,0.0251802147827607,6.3556,37,Recruitment,Atrophy,55,British Asian,Non-smoker,Menopausal,DHEA 6.5mg pv,20.4,67,7,1.2,2.5,NA,4.6,Yes,9122,9081,9065,9065,0.993751370313528
+VAN39,0.0576850413559076,7.3585,39,Recruitment,Atrophy,49,White British,Non-smoker,Menopausal,Sandrean/Mirena/Testogel/Vagifem,27.1,29,2,1,1,1.88,1,Yes,7826,7777,7757,7757,0.991183235369282
+VAN4,1.57121834638003,16.8883,4,Recruitment,Atrophy,56,White British,Non-smoker,Menopausal,Prasterone (DHEA); HRT implants,46,63,9,3.2,NA,2,3.8,Yes,19987,19670,19658,19641,0.982688747685996
+VAN40,2.205232001853,29.0141,40,Recruitment,Atrophy,45,Mixed White/Black,Non-smoker,Menopausal,Vaginal oestradiol as per licence ,23.3,59,2,1.8,NA,3.88,2,Yes,21385,21231,21203,21203,0.991489361702128
+VAN41,1.65805157016315,26.5477,41,Control,Non-Atrophy,28,White British,Non-smoker,Pre-menopausal,NA,34.3,22,1,1,1,1,1,Not applicable,18510,13771,13713,13147,0.710264721772015
+VAN43,1.63872411362485,29.1886,43,Control,Non-Atrophy,40,White British,Non-smoker,Pre-menopausal,NA,21,65,1,2.8,3.75,NA,5,Not applicable,16793,12650,12608,11960,0.712201512534985
+VAN47,0.35372034765146,9.1588,47,Recruitment,Atrophy,47,White British,Non-smoker,Menopausal,Oestrogel 3 pumps daily/Tostran 2%/Prasterone 6.5 mg daily (Hysterectomy),29.4,70,3,1.4,2.25,NA,4.8,Yes,14306,14142,14126,14126,0.987417866629386
+VAN48,0.626663577281787,14.3225,48,Recruitment,Atrophy,49,White British,Non-smoker,Menopausal,Oestrogel/Micronised progesterone (Rx for PMDD)/Prasterone,24,64,8,1.4,NA,NA,3.6,Yes,30075,29404,29340,29159,0.96954280964256
+VAN49,1.76022861295652,29.7807,49,Control,Non-Atrophy,24,White British,Smoker,Pre-menopausal,NA,27.2,60,1,2,2.25,4.5,1,Not applicable,22487,16635,16579,15695,0.697958820651932
+VAN5,1.29908115038902,14.4926,5,Recruitment,Atrophy,57,White British,Non-smoker,Menopausal,Vaginal DHEA (cont.),36,59,7,3,2.25,NA,4.2,Yes,13283,12991,12952,12952,0.975080930512685
+VAN50,1.73977645841601,26.6236,50,Control,Non-Atrophy,23,White British,Non-smoker,Pre-menopausal,NA,NA,34,0,1,1.5,2,1.4,Not applicable,22111,16146,16017,15270,0.690606485459726
+VAN51,0.260728039487296,9.998,51,Recruitment,Atrophy,48,White British,Non-smoker,Menopausal,Oestrogel 2 pumps with micronised progesterone. Eestriol cream delivery vaginally (cont.) and to vulva introduced.,30.9,44,7,1.8,1.75,2,2.4,Yes,26155,25523,25449,25269,0.966125023896005
+VAN52,0.183204234190242,13.3163,52,Control,Non-Atrophy,23,White British,Non-smoker,Pre-menopausal,NA,26.8,26,0,1,1.5,1.25,1,Not applicable,33045,32138,32009,31985,0.967922529883492
+VAN53,0.44228047312586,18.9625,53,Recruitment,Atrophy,46,White British,Non-smoker,Menopausal,Sandrena 1 mg ( Mirena)/vaginal estriol (Vagifem),22.4,22,6,1,1,1,1,Yes,11728,11429,11271,11264,0.96043656207367
+VAN54,0.272352855776145,23.5692,54,Control,Non-Atrophy,29,White British,Non-smoker,Pre-menopausal,NA,25.1,24,0,1.6,NA,1,1,Not applicable,36672,35675,35590,35586,0.97038612565445
+VAN55,0.19855695449935,18.028,55,Control,Non-Atrophy,45,White British,Non-smoker,Pre-menopausal,NA,28.2,23,2,1,NA,1.25,1,Not applicable,34001,32955,32854,32854,0.966265698067704
+VAN56,0.135168093259787,13.7571,56,Recruitment,Atrophy,47,White British,Non-smoker,Menopausal,Mirena/2 pumps Oestrogel/CO2 laser/estriol 0.1% cream,23.5,63,1,2.8,4.5,NA,5,Yes,44820,43713,43631,43631,0.97347166443552
+VAN57,0.589044779575324,18.7105,57,Control,Non-Atrophy,27,African,Non-smoker,Pre-menopausal,NA,23,22,1,1,1,1,1,Not applicable,5371,5292,5231,5107,0.950847142059207
+VAN58,0.459897162701364,8.7801,58,Control,Non-Atrophy,48,White British,Non-smoker,Menopausal,NA,24.8,21,1,1,NA,1,1,Not applicable,69591,68051,67962,67680,0.972539552528344
+VAN59,0.709462433877237,12.5906,59,Recruitment,Atrophy,58,White British,Non-smoker,Menopausal,Ospemifene 60 mg daily,30.9,68,5,4.4,NA,NA,NA,Yes,20211,19815,19743,19734,0.976398990648657
+VAN60,0.896137510698344,5.7414,60,Control,Non-Atrophy,60,Mixed White/Chinese,Non-smoker,Menopausal,NA,20.2,47,0,1,1,NA,4,Not applicable,109734,107746,107648,105320,0.959775457014234
+VAN8,0.841762562741004,23.4555,8,Recruitment,Atrophy,73,White British,Non-smoker,Menopausal,Vaginal DHEA,23.1,45,14,3.2,2.25,NA,1.8,Yes,17041,16343,15797,15736,0.92341998708996
+VAN9,0.70798887435474,20.3995,9,Recruitment,Atrophy,57,White British,Non-smoker,Menopausal,Estriol 0.03mg pessaries; DHEA (cont.),23,75,11,1.2,2.75,4.38,4.6,Yes,85022,84414,84296,83241,0.97905248053445
+VANB1,0.0399015201752676,8.0147,1,Follow up,Atrophy,54,White British,Non-smoker,Menopausal,E2 gel & Mirena with vaginal estrogen (cont.),28.7,32,4,1,1,1.5,2.2,Yes,59558,58435,58369,58364,0.97995231539004
+VANB10,2.77092715336527,53.4818,10,Follow up,Atrophy,56,White British,Non-smoker,Menopausal,Prasterone (DHEA),24.2,29,6,1,1,1.75,1.2,Yes,6212,6060,5963,5909,0.951223438506117
+VANB11,0.352334546171288,6.5165,11,Follow up,Atrophy,49,White British,Non-smoker,Menopausal,Lezetto (seystemic estrogen spray and vaginal DHEA) - (cont.),20.3,68,4,1,2.75,3.38,5,Yes,114625,112007,111898,110332,0.962547437295529
+VANB12,0.753948064927864,9.0851,12,Follow up,Atrophy,54,White British,Non-smoker,Menopausal,Systemic HRT; vaginal estrogen,20,72,1,2.2,3.75,NA,5,Yes,67072,65568,65485,64911,0.967780892175573
+VANB13,1.09991337880175,10.7753,13,Follow up,Atrophy,67,White British,Non-smoker,Menopausal,Estriol 0.01% cream (cont.),29.7,37,8,2.4,NA,NA,3.6,Yes,23294,22726,22697,22649,0.972310466214476
+VANB15,0.505452849425137,25.1681,15,Follow up,Atrophy,45,White British,Non-smoker,Menopausal,0.1% cream (Mirena),41.9,63,0,2.4,3.25,2.75,3.2,Yes,20392,19763,19685,19669,0.964544919576304
+VANB17,0.425684834845308,11.4889,17,Follow up,Atrophy,63,White British,Non-smoker,Menopausal,4 pumps oestogel/micronised progesterone/prasterone - cont,23.5,55,10,NA,3,1.38,5,Yes,21061,20658,20625,20606,0.978396087555197
+VANB2,0.159455430060436,17.8758,2,Follow up,Atrophy,50,White British,Non-smoker,Menopausal,HRT implants E2/T with Mirena (cont.); Vaginal DHEA,31,75,7,2.4,4.5,NA,5,Yes,29156,28565,28485,28485,0.976985869117849
+VANB20,0.0291852814036686,5.5949,20,Follow up,Atrophy,50,White British,Non-smoker,Menopausal,Tibolone (CO2 laser received prior to recruitment),22.5,35,0,1.6,1.75,1.5,1.6,Yes,42342,41165,41098,41081,0.970218695385197
+VANB21,0.788275571212986,18.6623,21,Follow up,Atrophy,57,White British,Non-smoker,Menopausal,Oestrogel 2 pumps with micronised progesterone. Eestriol cream delivery vaginally (cont.) and to vulva introduced.,20.6,53,0,2.2,2.25,1.63,4,Yes,17350,16966,16900,16877,0.972737752161383
+VANB22,0.225934420160829,24.1236,22,Follow up,Atrophy,74,White British,Non-smoker,Menopausal,Ospemifene. Estriol 0.1% cream (cont.),24.5,18,13,1.2,1,NA,1,Yes,16344,15988,15960,15953,0.976076847772883
+VANB25,0.390161027969997,5.8956,25,Follow up,Atrophy,78,White British,Non-smoker,Menopausal,IMVAGGIS estriol pessaries,24.4,37,9,1,1,NA,2,Yes,29306,28640,28598,28551,0.974237357537706
+VANB26,0.263849935633148,17.2748,26,Follow up,Atrophy,55,White British,Non-smoker,Menopausal,Vaginal oestradiol pessaries,45.3,55,0,1.4,NA,3.5,2.4,Yes,10020,9772,9720,9720,0.970059880239521
+VANB27,0.0154833866858038,4.3082,27,Follow up,Atrophy,51,White British,Non-smoker,Menopausal,Sandrena/Utrogestan; estriol cream,21.8,62,11,2.4,4.5,1.5,4,Yes,24261,23744,23722,23722,0.97778327356663
+VANB28,0.0984002512074128,12.2635,28,Follow up,Atrophy,46,White British,Non-smoker,Menopausal,4 pumps oestrogel/Mirena/IMVAGGIS,23,72,0,1.6,2.25,3.88,4.8,Yes,14714,14449,14406,14406,0.9790675547098
+VANB29,0.00692934649210909,2.6626,29,Follow up,Atrophy,47,Other white,Non-smoker,Menopausal,Kliofem; Prasterone,27.6,23,4,1.4,1.25,NA,1.8,Yes,21606,21059,21042,21042,0.973896139961122
+VANB3,0.242632130091077,16.8712,3,Follow up,Atrophy,67,White British,Non-smoker,Menopausal,Ospemifene (by mouth),35.5,59,6,1.4,5,1.5,5.2,Yes,133315,130597,130416,130056,0.97555413869407
+VANB30,0.601538256744862,35.0749,30,Follow up,Atrophy,46,Mixed White/Hispanic,Non-smoker,Menopausal,Estriol pessaries,44.8,76,7,1.6,3,3.88,5,Yes,16008,15652,15625,15581,0.973325837081459
+VANB34,2.02634889168404,20.1543,34,Follow up,Atrophy,62,White British,Non-smoker,Menopausal,Vaginal estriol pessaries (IMVAGGIS),24.7,45,9,1.2,1.25,NA,4.4,Yes,95551,93583,93395,91519,0.957802639428159
+VANB35,0.0177842198087275,3.9139,35,Follow up,Atrophy,61,White British,Non-smoker,Menopausal,1 pump oestogel/Mirena (systemic) daily vaginal estradiol 10mcg,24.9,54,5,1.6,3,NA,5,Yes,22173,21931,21915,21915,0.988364226762278
+VANB36,1.74129578226751,34.9902,36,Follow up,Atrophy,65,White British,Non-smoker,Menopausal,Estriol 0.1% cream,29.2,23,8,2.2,1.5,NA,NA,Yes,26493,25959,25875,23841,0.899898086286944
+VANB37,0.0607950454809587,11.0398,37,Follow up,Atrophy,55,British Asian,Non-smoker,Menopausal,DHEA 6.5mg pv,20.4,55,4,1.2,2,2.88,3.6,Yes,48752,47788,47720,47711,0.978647029865441
+VANB39,0.343347848026614,24.8357,39,Follow up,Atrophy,49,White British,Non-smoker,Menopausal,Sandrean/Mirena/Testogel/Vagifem,27.1,21,1,1,1,1,2,Yes,43141,42172,42034,41964,0.972717368628451
+VANB4,0.187044615496041,20.5904,4,Follow up,Atrophy,56,White British,Non-smoker,Menopausal,Prasterone (DHEA); HRT implants,46,64,0,3.2,3.5,2,3.6,Yes,55062,53911,53835,53576,0.973012240746794
+VANB40,0.0475610261787507,8.1546,40,Follow up,Atrophy,45,Mixed White/Black,Non-smoker,Menopausal,Vaginal oestradiol as per licence ,23.3,22,0,1,1,1,1,Yes,65466,64076,63995,63966,0.9770873430483
+VANB47,0.113050198391212,6.2022,47,Follow up,Atrophy,47,White British,Non-smoker,Menopausal,Oestrogel 3 pumps daily/Tostran 2%/Prasterone 6.5 mg daily (Hysterectomy),29.4,38,2,1,1,NA,4.4,Yes,13049,12627,12600,12600,0.965591233044678
+VANB48,0.554796741666662,16.5219,48,Follow up,Atrophy,49,White British,Non-smoker,Menopausal,Oestrogel/Micronised progesterone (Rx for PMDD)/Prasterone,24,52,0,1.2,2.5,NA,3.8,Yes,11426,11047,11025,10995,0.962279012777875
+VANB5,0.648009895138091,9.3276,5,Follow up,Atrophy,57,White British,Non-smoker,Menopausal,Vaginal DHEA (cont.),36,38,3,1.2,1.75,NA,3.2,Yes,19339,18963,18940,18928,0.978747608459589
+VANB51,0.0216181361861789,2.7051,51,Follow up,Atrophy,48,White British,Non-smoker,Menopausal,Oestrogel 2 pumps with micronised progesterone. Eestriol cream delivery vaginally (cont.) and to vulva introduced.,30.9,41,0,1.4,1.25,1.88,2.8,Yes,7645,7336,7310,7310,0.956180510137345
+VANB53,0.156745007071155,20.868,53,Follow up,Atrophy,46,White British,Non-smoker,Menopausal,Sandrena 1 mg ( Mirena)/vaginal estriol (Vagifem),22.4,22,2,1,1,1,1,Yes,42597,42053,41941,41626,0.977204967485973
+VANB56,0.173170131670287,14.0833,56,Follow up,Atrophy,47,White British,Non-smoker,Menopausal,Mirena/2 pumps Oestrogel/CO2 laser/estriol 0.1% cream,23.5,49,1,1.8,NA,NA,4.8,Yes,55810,54973,54832,54740,0.980827808636445
+VANB59,0.440145560718947,5.6316,59,Follow up,Atrophy,58,White British,Non-smoker,Menopausal,Ospemifene 60 mg daily,30.9,56,3,2,NA,NA,5.2,Yes,34750,33815,33744,33722,0.97041726618705
+VANB8,0.714582123024275,30.7774,8,Follow up,Atrophy,73,White British,Non-smoker,Menopausal,Vaginal DHEA,23.1,58,9,2.4,2,NA,1.4,Yes,5470,5345,5229,5229,0.955941499085923
+VANB9,0.574756500105692,19.0023,9,Follow up,Atrophy,57,White British,Non-smoker,Menopausal,Estriol 0.03mg pessaries; DHEA (cont.),23,60,5,1.4,2.75,2.88,3.8,Yes,70788,69200,68920,68679,0.970206814714358
