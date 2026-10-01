@@ -4,9 +4,9 @@ Github author: Lauren Mee
 Analysis pipeline linking 16S rRNA microbiome and NMR metabolome data to two clinical measures of vaginal atrophy severity — **NGAT** (clinician-scored) and **DIVA** (patient-reported) — in a cohort of post-menopausal women with GSM. Control patients were included for descriptive comparisons.
 Manuscript in process of being submitted and this README will be updated with DOI and authorship details once available.
 
-# QuickStart
+## QuickStart
 
-## Input
+### Input
 
 Available input here includes the pre-normalised NMR spectra data (`input/nmr/VANS_tampons_master_data_matrix_updated_Sep2024_missing_values_replaced.csv`) and patient metadata given by sample (`input/SampleMetadata.csv`).
 
@@ -23,7 +23,7 @@ input/
 |      ├──  silva_species_assignment_v138.1.fa
 ```
 
-## Running analysis
+### Running analysis
 
 Scripts **must be run in order** — each consumes checkpoint files written by the
 previous ones. All scripts assume the **project root** as the working directory.
@@ -40,7 +40,7 @@ source("scripts/05_NetworkComparison.R") # integration: assessing networks
 
 Note: Scripts 03 and 04 do not depend directly on script 02 and can be run in parallel with it if desired.
 
-## Requirements
+### Requirements
 
 - **R >= 4.4** (developed on 4.5.2)
 - ~4 GB RAM, ~3 GB free disk
