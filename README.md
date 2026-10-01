@@ -4,7 +4,13 @@ Github author: Lauren Mee
 Analysis pipeline linking 16S rRNA microbiome and NMR metabolome data to two clinical measures of vaginal atrophy severity — **NGAT** (clinician-scored) and **DIVA** (patient-reported) — in a cohort of post-menopausal women with GSM. Control patients were included for descriptive comparisons.
 Manuscript in process of being submitted and this README will be updated with DOI and authorship details once available.
 
-## QuickStart
+## QuickStart Guide
+
+### Requirements
+
+- **R >= 4.4** (developed on 4.5.2)
+- ~4 GB RAM, ~3 GB free disk
+- Dependencies (covered in script 00)
 
 ### Input
 
@@ -38,14 +44,16 @@ source("scripts/04_NetworkBuild.R")      # integration: building networks
 source("scripts/05_NetworkComparison.R") # integration: assessing networks
 ```
 
+#### Breakdown
+
+- `00_Install.R`: uses `BiocManager` to install packages needed to run the pipeline. Any failed installations are printed to screen.
+
+- `01_Micro_Processing.R`: Turns trimmed 16S reads into ASVs with DADA2 and assigns SILVA taxonomy. Removes likely reagent contaminants, low-read samples and patients without both visits. Main outputs: `phyloseq` objects at ASV, genus and phylum level for further analysis (script 02) and draws a community-composition plot (manuscript figure).
+
+- 
+
+
+
+
 Note: Scripts 03 and 04 do not depend directly on script 02 and can be run in parallel with it if desired.
-
-### Requirements
-
-- **R >= 4.4** (developed on 4.5.2)
-- ~4 GB RAM, ~3 GB free disk
-- Dependencies (covered in script 00)
-
-
-
 
