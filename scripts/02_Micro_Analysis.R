@@ -943,6 +943,21 @@ nmdsPlotList2 <- map2(nmdsRADFs, grpz, function(n, g) {
 })
 
 #combine all data
+#combine data
+nmdsBCDFs <- map(nmdsBCDFs, function(n) {
+  n <- n %>%
+    #add sample metadata 
+    inner_join(., topDF[, c("Sample", "DominantGenus")], by = "Sample") %>%
+    ungroup()
+  #add in binned NGAT severities
+  #add in binned NGAT severities
+  n$NGATBin[n$NGAT > 10] <- "Severe"
+  n$NGATBin[n$NGAT <= 10 & 
+              n$NGAT >= 5] <- "Moderate"
+  n$NGATBin[n$NGAT < 5] <- "Mild"
+  return(n)
+})
+
 nmdsPlot <- bind_rows(nmdsRADFs) %>%
   select(Sample, NMDS1.RA, NMDS2.RA) %>%
   inner_join(., nmdsPlot)
@@ -1021,16 +1036,21 @@ plots <- vector(mode = "list")
 #prepare labels for facet plot
 labRANGAT <- data.frame(Group = factor(c("Recruitment", 
                                          "Follow up")),
-                        x = c(-16.5, -16.5),
-                        y = c(3, 3),
-                        R2 = c(round(fullMod[[1]]["NGAT", c("R2")], 3), 
-                               round(fullMod[[2]]["NGAT", c("R2")], 3)),
-                        pVal = c(fullMod[[1]]["NGAT", c("Pr(>F)")],
-                                 fullMod[[2]]["NGAT", c("Pr(>F)")])) %>%
-  mutate(pValLab = ifelse(pVal < 0.001, "< 0.001", round(pVal, 3)),
-         label = paste0("k = ", k, 
-                        "\nPERMANOVA:\nR² = ", R2, 
-                        ", p = ", pValLab))
+                        x = c(-15, -15),
+                        y = c(-6.75, -6.75),
+                        redR2 = c(round(redMod[[1]]["NGAT", c("R2")], 3), 
+                                  round(redMod[[2]]["NGAT", c("R2")], 3)),
+                        redpVal = c(redMod[[1]]["NGAT", c("Pr(>F)")],
+                                    redMod[[2]]["NGAT", c("Pr(>F)")]),
+                        fullR2 = c(round(fullMod[[1]]["NGAT", c("R2")], 3), 
+                                   round(fullMod[[2]]["NGAT", c("R2")], 3)),
+                        fullpVal = c(fullMod[[1]]["NGAT", c("Pr(>F)")],
+                                     fullMod[[2]]["NGAT", c("Pr(>F)")])) %>%
+  mutate(pValLabRed = ifelse(redpVal < 0.001, "< 0.001", paste("=", round(redpVal, 3))),
+         pValLabFull = ifelse(fullpVal < 0.001, "< 0.001", paste("=", round(fullpVal, 3))),
+         label = paste0("\nPERMANOVA\nReduced: R² = ", redR2, 
+                        ", p ", pValLabRed, "\nFull: R² = ", fullR2, 
+                        ", p ", pValLabFull))
 
 
 #NGAT
@@ -1055,16 +1075,21 @@ plots[[1]] <- ggplot(nmdsPlot, aes(x = NMDS1.RA, y = NMDS2.RA, colour = NGAT)) +
 #prepare labels for facet plot
 labRADIVA <- data.frame(Group = factor(c("Recruitment", 
                                          "Follow up")),
-                        x = c(-16.5, -16.5),
-                        y = c(3, 3),
-                        R2 = c(round(fullMod[[1]]["DIVA", c("R2")], 3), 
-                               round(fullMod[[2]]["DIVA", c("R2")], 3)),
-                        pVal = c(fullMod[[1]]["DIVA", c("Pr(>F)")],
-                                 fullMod[[2]]["DIVA", c("Pr(>F)")])) %>%
-  mutate(pValLab = ifelse(pVal < 0.001, "< 0.001", round(pVal, 3)),
-         label = paste0("k = ", k, 
-                        "\nPERMANOVA:\nR² = ", R2, 
-                        ", p = ", pValLab)) 
+                        x = c(-18.5, -18.5),
+                        y = c(-6.75, -6.75),
+                        redR2 = c(round(redMod[[1]]["DIVA", c("R2")], 3), 
+                                  round(redMod[[2]]["DIVA", c("R2")], 3)),
+                        redpVal = c(redMod[[1]]["DIVA", c("Pr(>F)")],
+                                    redMod[[2]]["DIVA", c("Pr(>F)")]),
+                        fullR2 = c(round(fullMod[[1]]["DIVA", c("R2")], 3), 
+                                   round(fullMod[[2]]["DIVA", c("R2")], 3)),
+                        fullpVal = c(fullMod[[1]]["DIVA", c("Pr(>F)")],
+                                     fullMod[[2]]["DIVA", c("Pr(>F)")])) %>%
+  mutate(pValLabRed = ifelse(redpVal < 0.001, "< 0.001", paste("=", round(redpVal, 3))),
+         pValLabFull = ifelse(fullpVal < 0.001, "< 0.001", paste("=", round(fullpVal, 3))),
+         label = paste0("\nPERMANOVA\nReduced: R² = ", redR2, 
+                        ", p ", pValLabRed, "\nFull: R² = ", fullR2, 
+                        ", p ", pValLabFull))
 
 midP <- ((max(nmdsPlot$DIVA) - min(nmdsPlot$DIVA)) / 2) + min(nmdsPlot$DIVA)
 plots[[2]] <- ggplot(nmdsPlot, aes(x = NMDS1.RA, y = NMDS2.RA, colour = DIVA)) +
@@ -1085,7 +1110,8 @@ plots[[2]] <- ggplot(nmdsPlot, aes(x = NMDS1.RA, y = NMDS2.RA, colour = DIVA)) +
             inherit.aes = F, hjust = 0)
 pBetaClinicalRA <- ggarrange(plotlist = plots, ncol = 1)
 #save
-ggsave("output/microbiome/beta/AtrophySeverity_RobustAitchison_DIVA_NGAT_NMDS.png")
+ggsave("output/microbiome/beta/AtrophySeverity_RobustAitchison_DIVA_NGAT_NMDS.png",
+       height = 18, width = 20, unit = "cm")
 
 ##### Lactobacillus ####
 lactoRelA <- ggplot(lacto, aes(x = Group, y = relA)) +
@@ -1261,8 +1287,8 @@ plotsLacto[[1]] <- lacto %>%
              linetype = "dashed") + 
   geom_hline(yintercept = 0, colour = "darkgrey", alpha = 0.75, 
              linetype = "dashed") +
-  geom_point() +
   stat_smooth(method = "lm", colour = "darkgrey") +
+  geom_point() +
   facet_grid(~Group) +
   geom_text(data = NGATlab, size = 3, fontface = "italic",
             aes(x = x, y = y, label = label),
@@ -1278,8 +1304,8 @@ plotsLacto[[2]] <- lacto %>%
              linetype = "dashed") + 
   geom_hline(yintercept = 0, colour = "darkgrey", alpha = 0.75, 
              linetype = "dashed") +
-  geom_point() +
   stat_smooth(method = "lm", colour = "darkgrey") +
+  geom_point() +
   facet_grid(~Group) +
   geom_text(data = DIVAlab, size = 3, fontface = "italic",
             aes(x = x, y = y, label = label), hjust = 0) +
@@ -1377,28 +1403,28 @@ DIVAout <- maaslin3(input_data = tMCnts,
                     verbosity = "WARN")
 
 ##### Combined figures ####
-#figure 2: alpha / beta diversity and NGAT/DIVA
+#manuscript figure: alpha / beta diversity and NGAT/DIVA
 ggarrange(alphaPlot, pBetaClinical,
-          widths = c(1.5, 3),
+          widths = c(1.5, 4),
           labels = "AUTO")
-ggsave("output/figures/Figure2.jpg", 
-       width = 21, height = 15, unit = "cm")
-ggsave("output/figures/Figure2.png", 
-       width = 21, height = 15, unit = "cm")
-ggsave("output/figures/Figure2.pdf", 
-       width = 21, height = 15, unit = "cm")
+ggsave("output/figures/alpha-beta.jpg", 
+       width = 27, height = 19, unit = "cm")
+ggsave("output/figures/alpha-beta.png", 
+       width = 27, height = 19, unit = "cm")
+ggsave("output/figures/alpha-beta.pdf", 
+       width = 27, height = 19, unit = "cm")
 
-#figure 3: lactobacillus correlations and levels
+#manuscript figure: lactobacillus correlations and levels
 ggarrange(lactoRelA, corLacto,
           widths = c(1.5, 3),
           labels = "AUTO")
-ggsave("output/figures/Figure3.jpg", 
+ggsave("output/figures/lacto-facet.jpg", 
        width = 21.5, height = 10, unit = "cm",
        scale = 1.2)
-ggsave("output/figures/Figure3.png", 
+ggsave("output/figures/lacto-facet.png", 
        width = 21, height = 15, unit = "cm",
        scale = 1.2)
-ggsave("output/figures/Figure3.pdf", 
+ggsave("output/figures/lacto-facet.pdf", 
        width = 21, height = 15, unit = "cm",
        scale = 1.2)
 
@@ -1427,7 +1453,7 @@ writeLines(capture.output(print(min(rowSums(cnts)))),
 
 #save alpha statistics
 write.csv(alpha, "output/microbiome/alpha/ShannonDiversity_Data.csv",
-            row.names = F, quote = F, sep = "\t")
+            row.names = F, quote = F)
 
 #save tests
 writeLines(capture.output(print(stats)),
