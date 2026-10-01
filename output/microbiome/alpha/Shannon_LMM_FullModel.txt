@@ -1,0 +1,34 @@
+Linear mixed model fit by REML. t-tests use Satterthwaite's method ['lmerModLmerTest']
+Formula: Shannon ~ NGAT + DIVA + Age + Group + BMI + (1 | Patient.ID)
+   Data: alphaGSM
+
+REML criterion at convergence: 152.2
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-1.6835 -0.5248 -0.1911  0.2095  3.0954 
+
+Random effects:
+ Groups     Name        Variance Std.Dev.
+ Patient.ID (Intercept) 0.1012   0.3181  
+ Residual               0.2752   0.5246  
+Number of obs: 68, groups:  Patient.ID, 34
+
+Fixed effects:
+                Estimate Std. Error        df t value Pr(>|t|)  
+(Intercept)     0.545106   0.750249 34.528785   0.727   0.4724  
+NGAT            0.067366   0.026683 59.177041   2.525   0.0143 *
+DIVA           -0.004290   0.004794 45.018818  -0.895   0.3756  
+Age            -0.001894   0.012230 40.767021  -0.155   0.8777  
+GroupFollow up -0.099193   0.158664 50.614109  -0.625   0.5347  
+BMI             0.002507   0.011723 30.248127   0.214   0.8321  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Correlation of Fixed Effects:
+            (Intr) NGAT   DIVA   Age    GrpFlu
+NGAT         0.242                            
+DIVA        -0.429 -0.007                     
+Age         -0.775 -0.615  0.103              
+GroupFllwup -0.089  0.497  0.328 -0.273       
+BMI         -0.417  0.141 -0.085 -0.025  0.042
