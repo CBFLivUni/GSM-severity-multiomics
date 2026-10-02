@@ -7,7 +7,7 @@
 set.seed(1049)
 
 #libraries
-libs <- c("vegan", "phyloseq", "compositions", #microbiome processing
+libs <- c("vegan", "phyloseq", #microbiome processing
           "maaslin3", "lme4", "lmerTest", #microbiome abundance and prevalence modelling
           "variancePartition", #collinearity plot (cca)
           "ggpubr", "tidyverse") #general plots etc

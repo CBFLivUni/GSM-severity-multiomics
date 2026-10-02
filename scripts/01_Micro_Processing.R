@@ -12,7 +12,7 @@
 set.seed(1049)
 
 #libraries
-libs <- c("dada2", "phyloseq", "vegan", #microbiome processing
+libs <- c("dada2", "phyloseq", #microbiome processing
           "Biostrings", #save nucleotide sequences
           "ggpubr", "tidyverse") #general plots etc
 
