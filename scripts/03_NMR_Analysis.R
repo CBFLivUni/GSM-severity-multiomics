@@ -781,8 +781,9 @@ met %>%
   full_join(reg, ., by = c("Sample", "Patient.ID")) %>%
   mutate(Microbiome = ifelse(is.na(Microbiome), "Absent", Microbiome),
          Metabolome = ifelse(is.na(Metabolome), "Absent", Metabolome)) %>%
-  write.csv(., "processed/Sample_AnalysisRegister.csv")
+  write.csv(., "processed/Sample_AnalysisRegister.csv",
+            row.names = F, quote = F)
 
 #Session information
 writeLines(capture.output(sessionInfo()),
-           "output/nmr/DMAnalysis_sessionInfo.txt")
+           "output/nmr/NMRAnalysis_sessionInfo.txt")
