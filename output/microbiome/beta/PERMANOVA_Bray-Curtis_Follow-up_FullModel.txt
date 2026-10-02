@@ -5,11 +5,11 @@ Number of permutations: 10000
 
 adonis2(formula = d ~ NGAT + DIVA + Age + BMI, data = nmdsPlot[nmdsPlot$Group == g, ], permutations = 10000, method = "bray", by = "margin")
          Df SumOfSqs      R2      F  Pr(>F)  
-NGAT      1   0.2152 0.02379 0.9043 0.44526  
-DIVA      1   0.5848 0.06462 2.4569 0.05429 .
-Age       1   0.2691 0.02973 1.1305 0.33297  
-BMI       1   0.7403 0.08180 3.1101 0.02390 *
-Residual 29   6.9026 0.76275                 
-Total    33   9.0496 1.00000                 
+NGAT      1   0.2153 0.02379 0.9043 0.43226  
+DIVA      1   0.5847 0.06461 2.4566 0.05419 .
+Age       1   0.2691 0.02974 1.1306 0.31317  
+BMI       1   0.7402 0.08180 3.1100 0.02640 *
+Residual 29   6.9025 0.76275                 
+Total    33   9.0495 1.00000                 
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1

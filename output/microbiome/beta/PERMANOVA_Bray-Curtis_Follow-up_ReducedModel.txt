@@ -5,9 +5,9 @@ Number of permutations: 10000
 
 adonis2(formula = d ~ NGAT + DIVA, data = nmdsPlot[nmdsPlot$Group == g, ], permutations = 10000, method = "bray", by = "margin")
          Df SumOfSqs      R2      F Pr(>F)  
-NGAT      1   0.8609 0.09513 3.3867 0.0174 *
-DIVA      1   0.3502 0.03869 1.3775 0.2255  
-Residual 31   7.8803 0.87079                
-Total    33   9.0496 1.00000                
+NGAT      1   0.8609 0.09514 3.3869 0.0195 *
+DIVA      1   0.3501 0.03869 1.3773 0.2314  
+Residual 31   7.8803 0.87080                
+Total    33   9.0495 1.00000                
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
