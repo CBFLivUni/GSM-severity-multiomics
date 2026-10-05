@@ -759,7 +759,6 @@ plotsBC[[1]] <- ggplot(nmdsPlot, aes(x = NMDS1.BC, y = NMDS2.BC, colour = NGAT))
   labs(col = "Score",
        subtitle = "NGAT") +
   geom_point(size = 3) +
-  theme_bw(base_size = 13) +
   scale_colour_gradient2(low = vanPal[[6]],
                          mid = vanPal[[7]],
                          high = "#050808",
@@ -796,7 +795,6 @@ plotsBC[[2]] <- ggplot(nmdsPlot, aes(x = NMDS1.BC, y = NMDS2.BC, colour = DIVA))
   labs(col = "Score",
        subtitle = "DIVA") +
   geom_point(size = 3) +
-  theme_bw(base_size = 13) +
   scale_colour_gradient2(low = vanPal[[6]],
                          mid = vanPal[[7]],
                          high = "#050808",
