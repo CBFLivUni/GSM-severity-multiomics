@@ -623,7 +623,7 @@ ggsave("output/figures/fig-community.pdf",
        height = 15, width = 10, units = "in")
 ggsave("output/figures/fig-community.jpg",
        height = 15, width = 10, units = "in")
-save(figCommunity, file = "output/microbiome/fig-community.rds")
+save(figCommunity, file = "output/figures/fig-community.rds")
 
 #contamination investigations
 contamDF %>%
