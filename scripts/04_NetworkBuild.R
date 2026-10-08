@@ -20,7 +20,7 @@ for (pkg in libs) {
 
 #load data
 #metadata 
-met <- read.csv("input/SampleMeta_Jul26_Complete.csv")
+met <- read.csv("input/SampleMetadata.csv")
 
 #microbiome data
 load("processed/microbiome/PhyloSeqObjs.rds")
@@ -87,8 +87,8 @@ plotGraph <- function(graphObj,
 #derived here, but was only ever consumed by dead code paths in script 05.
 #Clinical-response measures are now built properly in script 06.
 
-#Keep only the atrophy patients and make sure there is a both before and
-#after treatment sample patient.
+#Keep only the atrophy patients and make sure there is a both recruitment and
+#follow up sample patient.
 atrophy <- met %>%
   filter(Status == "Atrophy") %>%
   select(Sample) %>%
@@ -135,7 +135,7 @@ x <- x[rownames(x) %in% both, ]
 all(rownames(x) == rownames(y))
 
 ##### Run correlation and permutation #####
-#just treatments
+#just GSM patients
 grpz <- c("Recruitment", "Follow up")
 samps <- map(grpz, function(run) {
   return(met$Sample[met$Group == run])
