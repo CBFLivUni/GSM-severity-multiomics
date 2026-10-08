@@ -530,7 +530,7 @@ pFullLMMslim <- plotDF %>%
         axis.text.x = element_text(size = 7)) +
   guides(colour = guide_legend(nrow = 2),
          shape = guide_legend(nrow = 2, ncol = 1))
-ggsave("output/nmr/LMM_SeverityOnlyEffectPlot_All28FullModBins.png")
+#save output later - manuscript figure of choice
 
 ##### Metabolites and NGAT / DIVA: Correlation ####
 #assess correlation directly between NGAT and significant hits 
@@ -764,14 +764,14 @@ write.csv(sumDF, "output/nmr/Metabolite-NGAT_SigMets_Summary.csv",
 
 #options for manuscript
 #option 1
-ggarrange(pFullLMMslim, moiBox,
-          widths = c(2, 3), labels = "AUTO")
-ggsave("output/figures/lmm-moi-box-facet.png",
-       width = 30, height = 18, unit = "cm")
-ggsave("output/figures/lmm-moi-box-facet.pdf",
-       width = 30, height = 18, unit = "cm")
-ggsave("output/figures/lmm-moi-box-facet.jpg",
-       width = 30, height = 18, unit = "cm")
+pFullLMMslim
+ggsave("output/figures/lmm-moi-slim.png",
+       width = 12, height = 15, unit = "cm")
+ggsave("output/figures/lmm-moi-slim.pdf",
+       width = 12, height = 15, unit = "cm")
+ggsave("output/figures/lmm-moi-slim.jpg",
+       width = 12, height = 15, unit = "cm")
+save(pFullLMMslim, file = "output/figures/lmm-moi-slim.rds")
 
 #record samples used in analysis
 reg <- read.csv("processed/Sample_AnalysisRegister.csv")
