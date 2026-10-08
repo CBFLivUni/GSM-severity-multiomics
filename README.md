@@ -1,6 +1,8 @@
 # A clinician-assessed measure of vaginal epithelial health is associated with multiomic signatures in genitourinary syndrome of menopause
 Github author: Lauren Mee
 
+![.](./output/figures/alpha-beta.jpg)
+
 Analysis pipeline linking 16S rRNA microbiome and NMR metabolome data to two clinical measures of vaginal atrophy severity — **NGAT** (clinician-scored) and **DIVA** (patient-reported) — in a cohort of post-menopausal women with GSM. Control patients were included for descriptive comparisons.
 Manuscript in process of being submitted and this README will be updated with DOI and authorship details once available.
 
@@ -18,7 +20,7 @@ Note that input, processed or output files that exceed 100MB are not stored in t
 
 Available input here includes the pre-normalised NMR spectra data (`input/nmr/VANS_tampons_master_data_matrix_updated_Sep2024_missing_values_replaced.csv`) and patient metadata given by sample (`input/SampleMetadata.csv`).
 
-Please note that this pipeline also requires **trimmed** FASTQ forward read files (source: [ENA], see manuscript for trimming parameters) and SILVA SSU training sets ([McLaren, M. R., & Callahan, B. J. (2021)](https://doi.org/10.5281/zenodo.4587955)). 
+Please note that this pipeline also requires **trimmed** FASTQ forward read files (source: [PRJEB127961](https://www.ebi.ac.uk/ena/browser/view/PRJEB127961), see manuscript for trimming parameters) and SILVA SSU training sets ([McLaren, M. R., & Callahan, B. J. (2021)](https://doi.org/10.5281/zenodo.4587955)). 
 The pipeline will expect the following file naming conventions and input architecture:
 
 ```
@@ -44,6 +46,7 @@ source("scripts/02_Micro_Analysis.R")    # microbiome: analysis
 source("scripts/03_NMR_Analysis.R")      # metabolomic: analysis. Required to run 04
 source("scripts/04_NetworkBuild.R")      # integration: building networks. Required to run 05.
 source("scripts/05_NetworkComparison.R") # integration: assessing networks
+source("scripts/06_FinalCohortCheck.R")  # final checks: looking at demography of analysis subcohorts
 ```
 
 Note: Scripts 03 does not depend directly on script 02 and can be run in parallel with it if desired.
@@ -61,4 +64,8 @@ Note: Scripts 03 does not depend directly on script 02 and can be run in paralle
 - `04_NetworkBuild.R`: Transforms and filters microbiome counts data. Builds microbe–metabolite Spearman correlation networks for each visit, with permutation p-values and BH correction. Main outputs: network build models ready for assessment / visualisation (script 05).
 
 - `05_NetworkComparison.R`: Compares the recruitment and follow up networks (hubs, degree, betweenness, shared nodes and edges) and labels the NGAT-associated metabolites. Runs Mantel tests of overall microbiome–metabolome agreement. Main outputs: visualisations of each visits integrated microbiome-metabolome interactions (manuscript figure).
+
+- `06_FinalCohortCheck.R`: Assesses demography and differences in severity metrics between the analysis subcohorts and across the whole included cohort (patients that were used at least once across the analysis arms).
+
+
 
