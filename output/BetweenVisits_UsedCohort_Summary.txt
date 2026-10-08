@@ -1,0 +1,20 @@
+$NGAT_RecruitmentVFollowUp_WilcoxonSignedRankTest_Paired_ContinuityCorrection
+       group1    group2  .y. pairs     V            p y.position p.label
+V Recruitment Follow up NGAT    46 803.5 1.045279e-05         16     ***
+
+$DIVA_RecruitmentVFollowUp_WilcoxonSignedRankTest_Paired_ContinuityCorrection
+       group1    group2  .y. pairs     V            p y.position p.label
+V Recruitment Follow up DIVA    46 928.5 4.300975e-07         95     ***
+
+$DIVAvNGAT_PerTimepoint_KendallRankCorrelation
+       Cohort Var1 Var2 Statistic          StatValue                 tau Exact         p     p.adj p.label
+1 Recruitment DIVA NGAT         z -0.142786440933601 -0.0150646151262956 FALSE 0.8864588 0.8864588      NS
+2   Follow up DIVA NGAT         z   0.68721789247286  0.0730683611927294 FALSE 0.4919454 0.8864588      NS
+
+$AgevSeverityScores_PerTimepoint_KendallRankCorrelation
+       Cohort Var1 Var2 Statistic          StatValue                 tau Exact            p        p.adj p.label
+1 Recruitment  Age NGAT         z   4.30566177571415   0.456867817853905 FALSE 1.664873e-05 6.659491e-05     ***
+2   Follow up  Age NGAT         z   3.61077224390635   0.386266288026118 FALSE 3.052867e-04 6.105733e-04     ***
+3 Recruitment  Age DIVA         z -0.873025860316823 -0.0907764105847752 FALSE 3.826490e-01 5.101986e-01      NS
+4   Follow up  Age DIVA         z   0.60725930287673  0.0631178748082632 FALSE 5.436788e-01 5.436788e-01      NS
+
