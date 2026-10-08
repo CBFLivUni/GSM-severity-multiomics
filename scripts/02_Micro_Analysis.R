@@ -1406,11 +1406,11 @@ alphaBeta <- ggarrange(alphaPlot, pBetaClinical,
           widths = c(1.5, 4),
           labels = "AUTO")
 ggsave("output/figures/alpha-beta.jpg", 
-       width = 27, height = 19, unit = "cm")
+       width = 28, height = 19, unit = "cm")
 ggsave("output/figures/alpha-beta.png", 
-       width = 27, height = 19, unit = "cm")
+       width = 28, height = 19, unit = "cm")
 ggsave("output/figures/alpha-beta.pdf", 
-       width = 27, height = 19, unit = "cm")
+       width = 28, height = 19, unit = "cm")
 save(alphaBeta, file = "output/figures/alpha-beta.rds")
 
 #manuscript figure: lactobacillus correlations and levels
