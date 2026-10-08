@@ -303,7 +303,18 @@ pmap(list(grpz, labs, tidygraphsBA), function(x, fileN, y) {
   ggsave(paste0("output/network/", fileN, "/SigPairwiseSpearmanCorr_NetworkGraph_Unlabelled.jpg"))
 })
 
- 
+#record samples used in analysis
+reg <- read.csv("processed/Sample_AnalysisRegister.csv")
+met %>%
+  #keep only the samples that went into the network build
+  filter(Sample %in% rownames(x)) %>%
+  mutate(Network = "Present") %>%
+  select(Sample, Patient.ID, Network) %>%
+  full_join(reg, ., by = c("Sample", "Patient.ID")) %>%
+  mutate(Network = ifelse(is.na(Network), "Absent", Network)) %>%
+  write.csv(., "processed/Sample_AnalysisRegister.csv",
+            row.names = F, quote = F)
+
 #Session information
 writeLines(capture.output(sessionInfo()),
            "output/network/BuildingNetworks_sessionInfo.txt")
