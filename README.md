@@ -1,6 +1,8 @@
 # A clinician-assessed measure of vaginal epithelial health is associated with multiomic signatures in genitourinary syndrome of menopause
 Github author: Lauren Mee
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23242060.svg)](https://doi.org/10.5281/zenodo.23242060)
+
 ![.](./output/figures/alpha-beta.jpg)
 
 Analysis pipeline linking 16S rRNA microbiome and NMR metabolome data to two clinical measures of vaginal atrophy severity — **NGAT** (clinician-scored) and **DIVA** (patient-reported) — in a cohort of post-menopausal women with GSM. Control patients were included for descriptive comparisons.
