@@ -1418,13 +1418,13 @@ lactoFacet <- ggarrange(lactoRelA, corLacto,
           widths = c(1.5, 3),
           labels = "AUTO")
 ggsave("output/figures/lacto-facet.jpg", 
-       width = 21.5, height = 10, unit = "cm",
+       width = 21.5, height = 12, unit = "cm",
        scale = 1.2)
 ggsave("output/figures/lacto-facet.png", 
-       width = 21, height = 15, unit = "cm",
+       width = 21, height = 12, unit = "cm",
        scale = 1.2)
 ggsave("output/figures/lacto-facet.pdf", 
-       width = 21, height = 15, unit = "cm",
+       width = 21, height = 12, unit = "cm",
        scale = 1.2)
 save(lactoFacet, file = "output/figures/lacto-facet.rds")
 
