@@ -615,14 +615,15 @@ prevDF <- genCnts %>%
 
 ##### Outputs #####
 #manuscript figure
-ggarrange(plotlist = list(phyCom, genCom),
+figCommunity <- ggarrange(plotlist = list(phyCom, genCom),
           ncol = 1, labels = "AUTO")
-ggsave("output/figures/Fig-community.png",
+ggsave("output/figures/fig-community.png",
        height = 15, width = 10, units = "in")
-ggsave("output/figures/Fig-community.pdf",
+ggsave("output/figures/fig-community.pdf",
        height = 15, width = 10, units = "in")
-ggsave("output/figures/Fig-community.jpg",
+ggsave("output/figures/fig-community.jpg",
        height = 15, width = 10, units = "in")
+save(figCommunity, file = "output/microbiome/fig-community.rds")
 
 #contamination investigations
 contamDF %>%
