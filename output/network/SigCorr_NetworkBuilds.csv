@@ -1,0 +1,36 @@
+Genus,Metabolite,Correlation,Relationship,Group
+Lactobacillus,Formate_5,0.63559510567297,Negative,Recruitment
+Lactobacillus,Unknown_15,0.577308120133482,Negative,Recruitment
+Lactobacillus,Unknown_23,0.652947719688543,Negative,Recruitment
+Streptococcus,Unknown_23,0.580422691879867,Positive,Recruitment
+Lactobacillus,Unknown_24,0.629810901001112,Negative,Recruitment
+Lactobacillus,Unknown_25,0.661846496106785,Negative,Recruitment
+Lactobacillus,Unknown_26,0.623581757508343,Negative,Recruitment
+Lactobacillus,Unknown_28,0.595995550611791,Negative,Recruitment
+Lactobacillus,Uracil_30,0.72769744160178,Negative,Recruitment
+Streptococcus,Uracil_30,0.566629588431591,Positive,Recruitment
+Lactobacillus,Carnitine_119,0.582202447163515,Negative,Recruitment
+Lactobacillus,O_phosphocholine_120,0.70055617352614,Negative,Recruitment
+Streptococcus,O_phosphocholine_120,0.61245828698554,Positive,Recruitment
+Streptococcus,Aspartate_136,0.599110122358176,Negative,Recruitment
+Lactobacillus,Unknown_148,0.646718576195773,Negative,Recruitment
+Lactobacillus,Unknown_153,0.742825361512792,Negative,Recruitment
+Lactobacillus,Glutamine_154,0.702335928809789,Negative,Recruitment
+Veillonellaceae_unclassified,Glutamine_154,0.585761957730812,Positive,Recruitment
+Lactobacillus,Unknown_169,0.660066740823137,Negative,Recruitment
+Lactobacillus,Glutamine.glutamate_173,0.592880978865406,Negative,Recruitment
+Lactobacillus,Leucine_229,0.598665183537264,Positive,Recruitment
+Lactobacillus,Formate_5,0.648943270300334,Negative,Follow up
+Lactobacillus,Unknown_22,0.633370411568409,Positive,Follow up
+Lactobacillus,Unknown_46,0.615127919911012,Positive,Follow up
+Lactobacillus,Unknown_47,0.664071190211346,Positive,Follow up
+Lactobacillus,Isoleucine.unknown_194,0.607563959955506,Positive,Follow up
+Lactobacillus,Leucine.unknown_209,0.665406006674082,Positive,Follow up
+Lactobacillus,Leucine.unknown_211,0.691212458286986,Positive,Follow up
+Lactobacillus,Unknown_214,0.636484983314794,Positive,Follow up
+Lactobacillus,Unknown_215,0.628476084538376,Positive,Follow up
+Lactobacillus,Isoleucine_225,0.653837597330367,Positive,Follow up
+Streptococcus,Isoleucine_225,0.67741935483871,Negative,Follow up
+Lactobacillus,Leucine_229,0.6734149054505,Positive,Follow up
+Streptococcus,Leucine_229,0.616462736373749,Negative,Follow up
+Lactobacillus,Leucine.isoleucine_230,0.660956618464961,Positive,Follow up
