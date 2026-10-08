@@ -783,7 +783,7 @@ labBCDIVA <- data.frame(Group = factor(c("Recruitment",
                         fullR2 = c(round(fullMod[[1]]["DIVA", c("R2")], 3), 
                                    round(fullMod[[2]]["DIVA", c("R2")], 3)),
                         fullpVal = c(fullMod[[1]]["DIVA", c("Pr(>F)")],
-                                     fullMod[[2]]["NGAT", c("Pr(>F)")])) %>%
+                                     fullMod[[2]]["DIVA", c("Pr(>F)")])) %>%
   mutate(pValLabRed = ifelse(redpVal < 0.001, "< 0.001", paste("=", round(redpVal, 3))),
          pValLabFull = ifelse(fullpVal < 0.001, "< 0.001", paste("=", round(fullpVal, 3))),
          label = paste0("\nPERMANOVA\nReduced: R² = ", redR2, 
@@ -1402,7 +1402,7 @@ DIVAout <- maaslin3(input_data = tMCnts,
 
 ##### Combined figures ####
 #manuscript figure: alpha / beta diversity and NGAT/DIVA
-ggarrange(alphaPlot, pBetaClinical,
+alphaBeta <- ggarrange(alphaPlot, pBetaClinical,
           widths = c(1.5, 4),
           labels = "AUTO")
 ggsave("output/figures/alpha-beta.jpg", 
@@ -1411,9 +1411,10 @@ ggsave("output/figures/alpha-beta.png",
        width = 27, height = 19, unit = "cm")
 ggsave("output/figures/alpha-beta.pdf", 
        width = 27, height = 19, unit = "cm")
+save(alphaBeta, file = "output/figures/alpha-beta.rds")
 
 #manuscript figure: lactobacillus correlations and levels
-ggarrange(lactoRelA, corLacto,
+lactoFacet <- ggarrange(lactoRelA, corLacto,
           widths = c(1.5, 3),
           labels = "AUTO")
 ggsave("output/figures/lacto-facet.jpg", 
@@ -1425,6 +1426,7 @@ ggsave("output/figures/lacto-facet.png",
 ggsave("output/figures/lacto-facet.pdf", 
        width = 21, height = 15, unit = "cm",
        scale = 1.2)
+save(lactoFacet, file = "output/figures/lacto-facet.rds")
 
 ##### Outputs #####
 #all data
