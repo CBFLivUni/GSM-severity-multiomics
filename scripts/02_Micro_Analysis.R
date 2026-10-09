@@ -1112,7 +1112,9 @@ ggsave("output/microbiome/beta/AtrophySeverity_RobustAitchison_DIVA_NGAT_NMDS.pn
        height = 18, width = 20, unit = "cm")
 
 ##### Lactobacillus ####
-lactoRelA <- ggplot(lacto, aes(x = Group, y = relA)) +
+lactoRelA <- lacto %>% 
+  mutate(Group = factor(Group, levels = c("Control", "Recruitment", "Follow up"))) %>%
+  ggplot(aes(x = Group, y = relA)) +
   theme_bw(base_size = 13) +
   geom_violin(alpha = 0.5, width = 0.5, aes(fill = Group)) +
   geom_boxplot(width = 0.1, alpha = 0.5, aes(colour = Group)) +
