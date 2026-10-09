@@ -332,9 +332,9 @@ if (bVa.SharedEdgesNo == 0) {
 
 #compare matrix
 compTop <- data.frame(SharedNodeNo = bVa.SharedNodesNo,
-           SharedNodes = paste(bVa.Node, collapse = ", "),
+           SharedNodes = paste(bVa.Node, collapse = "; "),
            SharedEdgeNo = bVa.SharedEdgesNo,
-           SharedEdges = paste(bVa.Edge, collapse = ", "))
+           SharedEdges = paste(bVa.Edge, collapse = "; "))
 rownames(compTop) <- "RecruitmentVsFollowUp"
 
 #degrees / betweenness
